@@ -1,6 +1,7 @@
 # comment
 job.md
 job/
+.gitignore
 
 # Compiled class file
 *.class
