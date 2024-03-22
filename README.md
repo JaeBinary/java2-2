@@ -1,5 +1,5 @@
 # JAEBIN KIM (202038112)
-## STICK IT OUT
+## Motto : STICK IT OUT
 
 ### 22/03/2024 (3week)
 
