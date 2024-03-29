@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Ex3_4",
+            "request": "launch",
+            "mainClass": "Ex3_4",
+            "projectName": "java2-2_61fcfe00"
+        },
+        {
+            "type": "java",
+            "name": "Ex3_2",
+            "request": "launch",
+            "mainClass": "Ex3_2",
+            "projectName": "java2-2_61fcfe00"
+        },
+        {
+            "type": "java",
+            "name": "Ex2_14",
+            "request": "launch",
+            "mainClass": "Ex2_14",
+            "projectName": "java2-2_61fcfe00"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "java2-2_61fcfe00"
+        },
+        {
+            "type": "java",
+            "name": "Ex2_5",
+            "request": "launch",
+            "mainClass": "Ex2_5",
+            "projectName": "java2-2_61fcfe00"
+        },
+        {
+            "type": "java",
+            "name": "Hello",
+            "request": "launch",
+            "mainClass": "Hello",
+            "projectName": "java2-2_61fcfe00"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "Test",
+            "projectName": "java2-2_61fcfe00"
+        }
+    ]
+}
