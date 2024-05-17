@@ -6,6 +6,62 @@
     "configurations": [
         {
             "type": "java",
+            "name": "NullContainerEx",
+            "request": "launch",
+            "mainClass": "chapter8.NullContainerEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "VectorEX",
+            "request": "launch",
+            "mainClass": "chapter7.VectorEX",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "GridLayoutEx",
+            "request": "launch",
+            "mainClass": "chapter8.GridLayoutEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "IteratorEX",
+            "request": "launch",
+            "mainClass": "IteratorEX",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "VectorEX",
+            "request": "launch",
+            "mainClass": "VectorEX",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "MyFrame",
+            "request": "launch",
+            "mainClass": "MyFrame",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "HashMapDicEx",
+            "request": "launch",
+            "mainClass": "HashMapDicEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "ContentPaneEx",
+            "request": "launch",
+            "mainClass": "ContentPaneEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "Test",
             "request": "launch",
             "mainClass": "Test",

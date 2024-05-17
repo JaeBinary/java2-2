@@ -9,6 +9,23 @@ public class 클래스명 {
     }
 }
 ```
+
+# 17/05/2024 (10week)
+### 배치관리자 대표 유형 4가지
+- FlowLayout 배치관리자
+- BorderLayout 배치관리자
+- GridLayout 배치관리자
+- CardLayout
+
+### 컨테이너의 디폴트 배치관리자
+|AWT와 스윙 컨테이너|디폴트 배치관리자|
+|:---:|:---:|
+|Window, JWindow|BorderLayout|
+|Frame, JFrame|BorderLayout|
+|Dialog, JDialog|BorderLayout|
+|Panel, JPanel|FlowLayout|
+|Applet, JApplet|FlowLayout|
+
 # 03/05/2024 (9week)
 # 13. 제네릭
 ## 55) 제네릭의 개념
@@ -678,7 +695,7 @@ final int AGES = 100; // 100이 바로 리터럴임.
 ### 자바 가상 머신(JVM, Java Virtual Machine)
 - **자바 바이트코드를 실행**시키기 위한 **가상의 기계**라고 한다.
 - 자바로 작성된 모든 프로그램은 **자바 가상 머신에서만 실행**될 수 있으므로, 자바 프로그램을 실행하기 위해서는 **반드시 자바 가상 머신이 설치**되어 있어야 한다.
-- 오라클은 대부분의 주요 운영체제뿐만 아니라 웹 브라우저, 스마트폰, 가전기기 등에서도 **자바 가상 머신을 손쉽게 설치**할 수 있도록 지원한다.
+- 오라클은 대부분의 주요 운영체제뿐만 아니라 웹 브라우저, 스마트폰, 가전기기 등에서도 **자바 가상 머신을 손쉽게 설치**할 수 있도록 지원한다.<br>
 ![JVM](https://www.tcpschool.com/lectures/img_java_jvm.png)<br>
 위 그림처럼 서로 다른 운영체제라도 자바 가상 머신만 설치되어 있다면, 같은 자바 프로그램이 아무런 추가 조치 없이 동작할 수 있다.<br>
 따라서, 개발자는 한 번만 프로그램을 작성하면 모든 운영체제에서 같이 사용할 수 있는 장점이 있다.<br>

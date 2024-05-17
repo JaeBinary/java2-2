@@ -1,3 +1,4 @@
+package chapter7;
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +12,7 @@ public class ContentPaneEx extends JFrame {
         // 컨텐트팬 객체 생성
         Container contentPane = getContentPane();
         // 컨텐트팬의 메서드 활용(배경색, 레이아웃 생성)
-        contentPane.setBackground(Color.BLUE);
+        contentPane.setBackground(Color.RED);
         contentPane.setLayout(new FlowLayout());
 
         // 컨텐트 팬에다 컴포넌트 부착(버튼 3개)

@@ -1,3 +1,4 @@
+package chapter7;
 import javax.swing.*;
 
 // 프레임을 만들기 때문에 JFrame 상속
