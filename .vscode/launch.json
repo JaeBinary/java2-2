@@ -6,6 +6,55 @@
     "configurations": [
         {
             "type": "java",
+            "name": "FlyingTextEx",
+            "request": "launch",
+            "mainClass": "chapter9.FlyingTextEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "KeyCharEx",
+            "request": "launch",
+            "mainClass": "chapter9.KeyCharEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "MouseListenerEx",
+            "request": "launch",
+            "mainClass": "chapter9.MouseListenerEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "AnonymousClassListener",
+            "request": "launch",
+            "mainClass": "chapter9.AnonymousClassListener",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "InnerClassListener",
+            "request": "launch",
+            "mainClass": "chapter9.InnerClassListener",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "IndepClassListener",
+            "request": "launch",
+            "mainClass": "chapter9.IndepClassListener",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "BorderLayoutEx",
+            "request": "launch",
+            "mainClass": "chapter8.BorderLayoutEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "NullContainerEx",
             "request": "launch",
             "mainClass": "chapter8.NullContainerEx",
