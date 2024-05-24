@@ -1,7 +1,7 @@
 /*
- * ÀÏÀÚ : 24.05.24 (11week)
- * ¹üÀ§ : Chapter 9. ÀÚ¹ÙÀÇ ÀÌº¥Æ® Ã³¸®
- * ¿¹Á¦	: 9-7
+ * ì¼ì : 24.05.24 (11week)
+ * ë²”ìœ„ : Chapter 9. ìë°”ì˜ ì´ë²¤íŠ¸ ì²˜ë¦¬
+ * ì˜ˆì œ	: 9-7
  */
 
 package chapter9;
@@ -10,36 +10,36 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class FlyingTextEx extends JFrame {
-	private JLabel la = new JLabel("HELLO"); // Å° ÀÔ·Â¿¡ µû¶ó ¿òÁ÷ÀÏ ·¹ÀÌºí ÄÄÆ÷³ÍÆ® 
+	private JLabel la = new JLabel("HELLO"); // í‚¤ ì…ë ¥ì— ë”°ë¼ ì›€ì§ì¼ ë ˆì´ë¸” ì»´í¬ë„ŒíŠ¸ 
 	
 	public FlyingTextEx() {
-		super("»ó,ÇÏ,ÁÂ,¿ì Å°¸¦ ÀÌ¿ëÇÏ¿© ÅØ½ºÆ® ¿òÁ÷ÀÌ±â");
+		super("ìƒ,í•˜,ì¢Œ,ìš° í‚¤ë¥¼ ì´ìš©í•˜ì—¬ í…ìŠ¤íŠ¸ ì›€ì§ì´ê¸°");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Container c = getContentPane();
-		c.setLayout(null); // ÄÁÅÙÆ®ÆÒÀÇ ¹èÄ¡°ü¸®ÀÚ »èÁ¦
-		c.addKeyListener(new MyKeyListener()); // ÄÁÅÙÆ®ÆÒ¿¡ Å° ¸®½º³Ê ´Ş±â
-		la.setLocation(50,50); // ·¹ÀÌºíÀÇ ÃÊ±â À§Ä¡´Â (50,50)
+		c.setLayout(null); // ì»¨í…íŠ¸íŒ¬ì˜ ë°°ì¹˜ê´€ë¦¬ì ì‚­ì œ
+		c.addKeyListener(new MyKeyListener()); // ì»¨í…íŠ¸íŒ¬ì— í‚¤ ë¦¬ìŠ¤ë„ˆ ë‹¬ê¸°
+		la.setLocation(50,50); // ë ˆì´ë¸”ì˜ ì´ˆê¸° ìœ„ì¹˜ëŠ” (50,50)
 		la.setSize(100,20);
 		c.add(la);
 		setSize(200,200);
 		setVisible(true);
 		
-		c.setFocusable(true); // ÄÁÅÙÆ®ÆÒÀÌ Æ÷Ä¿½º¸¦ ¹ŞÀ» ¼ö ÀÖµµ·Ï ¼³Á¤
-		c.requestFocus(); // ÄÁÅÙÆ®ÆÒÀÌ Å° ÀÔ·ÂÀ» ¹ŞÀ» ¼ö ÀÖµµ·Ï Æ÷Ä¿½º °­Á¦ ÁöÁ¤	
+		c.setFocusable(true); // ì»¨í…íŠ¸íŒ¬ì´ í¬ì»¤ìŠ¤ë¥¼ ë°›ì„ ìˆ˜ ìˆë„ë¡ ì„¤ì •
+		c.requestFocus(); // ì»¨í…íŠ¸íŒ¬ì´ í‚¤ ì…ë ¥ì„ ë°›ì„ ìˆ˜ ìˆë„ë¡ í¬ì»¤ìŠ¤ ê°•ì œ ì§€ì •	
 	}
 	
-	class MyKeyListener extends KeyAdapter { // Key ¸®½º³Ê ±¸Çö
+	class MyKeyListener extends KeyAdapter { // Key ë¦¬ìŠ¤ë„ˆ êµ¬í˜„
 		public void keyPressed(KeyEvent e) {
-			int keyCode = e.getKeyCode(); // ÀÔ·ÂµÈ Å°ÀÇ Å°ÄÚµå¸¦ ¾Ë¾Æ³½´Ù.
-			switch(keyCode) { // Å° ÄÚµå¿¡ µû¶ó »ó,ÇÏ,ÁÂ,¿ì Å° ÆÇº°, ·¹ÀÌºíÀÇ À§Ä¡ ÀÌµ¿
-				case KeyEvent.VK_UP:  //UP Å°
+			int keyCode = e.getKeyCode(); // ì…ë ¥ëœ í‚¤ì˜ í‚¤ì½”ë“œë¥¼ ì•Œì•„ë‚¸ë‹¤.
+			switch(keyCode) { // í‚¤ ì½”ë“œì— ë”°ë¼ ìƒ,í•˜,ì¢Œ,ìš° í‚¤ íŒë³„, ë ˆì´ë¸”ì˜ ìœ„ì¹˜ ì´ë™
+				case KeyEvent.VK_UP:  //UP í‚¤
 					la.setLocation(la.getX(), la.getY() - 10); break;
-				case KeyEvent.VK_DOWN: //DOWN Å° 
+				case KeyEvent.VK_DOWN: //DOWN í‚¤ 
 					la.setLocation(la.getX(), la.getY() + 10); break;
-				case KeyEvent.VK_LEFT: //LEFT Å°
+				case KeyEvent.VK_LEFT: //LEFT í‚¤
 					la.setLocation(la.getX() - 10, la.getY()); break;
-				case KeyEvent.VK_RIGHT: //RIGHT Å°
+				case KeyEvent.VK_RIGHT: //RIGHT í‚¤
 					la.setLocation(la.getX() + 10, la.getY()); break;				
 			}
 		}

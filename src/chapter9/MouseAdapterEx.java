@@ -1,7 +1,7 @@
 /*
- * ÀÏÀÚ : 24.05.24 (11week)
- * ¹üÀ§ : Chapter 9. ÀÚ¹ÙÀÇ ÀÌº¥Æ® Ã³¸®
- * ¿¹Á¦	: 9-5
+ * ì¼ì : 24.05.24 (11week)
+ * ë²”ìœ„ : Chapter 9. ìë°”ì˜ ì´ë²¤íŠ¸ ì²˜ë¦¬
+ * ì˜ˆì œ	: 9-5
  */
 
 package chapter9;
@@ -10,28 +10,28 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class MouseAdapterEx extends JFrame {
-	private JLabel la = new JLabel("Hello"); // "Hello" ¹®ÀÚ¿­À» Ãâ·ÂÇÏ±â À§ÇÑ ·¹ÀÌºí ÄÄÆ÷³ÍÆ®
+	private JLabel la = new JLabel("Hello"); // "Hello" ë¬¸ìì—´ì„ ì¶œë ¥í•˜ê¸° ìœ„í•œ ë ˆì´ë¸” ì»´í¬ë„ŒíŠ¸
 
 	public MouseAdapterEx() {
-		setTitle("Mouse ÀÌº¥Æ® ¿¹Á¦");
+		setTitle("Mouse ì´ë²¤íŠ¸ ì˜ˆì œ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
-		c.addMouseListener(new MyMouseAdapter()); // ÄÁÅÙÆ®ÆÒ¿¡ Mouse ÀÌº¥Æ® ¸®½º³Ê ´Ş±â
+		c.addMouseListener(new MyMouseAdapter()); // ì»¨í…íŠ¸íŒ¬ì— Mouse ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ë‹¬ê¸°
 
-		c.setLayout(null); // ÄÁÅÙÆ®ÆÒÀÇ ¹èÄ¡°ü¸®ÀÚ »èÁ¦
-		la.setSize(50, 20); // ·¹ÀÌºíÀÇ Å©±â 50x20 ¼³Á¤
-		la.setLocation(30, 30);// ·¹ÀÌºíÀÇ À§Ä¡ (30,30)À¸·Î ¼³Á¤
-		c.add(la); //·¹ÀÌºí ÄÄÆ÷³ÍÆ® »ğÀÔ
+		c.setLayout(null); // ì»¨í…íŠ¸íŒ¬ì˜ ë°°ì¹˜ê´€ë¦¬ì ì‚­ì œ
+		la.setSize(50, 20); // ë ˆì´ë¸”ì˜ í¬ê¸° 50x20 ì„¤ì •
+		la.setLocation(30, 30);// ë ˆì´ë¸”ì˜ ìœ„ì¹˜ (30,30)ìœ¼ë¡œ ì„¤ì •
+		c.add(la); //ë ˆì´ë¸” ì»´í¬ë„ŒíŠ¸ ì‚½ì…
 		
 		setSize(200,200);
 		setVisible(true);		
 	}
 	
-	class MyMouseAdapter extends MouseAdapter { // MouseAdapter¸¦ »ó¼Ó¹Ş¾Æ ¸®½º³Ê ±¸Çö
+	class MyMouseAdapter extends MouseAdapter { // MouseAdapterë¥¼ ìƒì†ë°›ì•„ ë¦¬ìŠ¤ë„ˆ êµ¬í˜„
 		public void mousePressed(MouseEvent e) {
-			int x = e.getX(); // ¸¶¿ì½º Å¬¸¯ ÁÂÇ¥ x
-			int y = e.getY(); // ¸¶¿ì½º Å¬¸¯ ÁÂÇ¥ y
-			la.setLocation(x, y); // ·¹ÀÌºíÀÇ À§Ä¡¸¦ (x,y)·Î ÀÌµ¿
+			int x = e.getX(); // ë§ˆìš°ìŠ¤ í´ë¦­ ì¢Œí‘œ x
+			int y = e.getY(); // ë§ˆìš°ìŠ¤ í´ë¦­ ì¢Œí‘œ y
+			la.setLocation(x, y); // ë ˆì´ë¸”ì˜ ìœ„ì¹˜ë¥¼ (x,y)ë¡œ ì´ë™
 		}
 	}
 	

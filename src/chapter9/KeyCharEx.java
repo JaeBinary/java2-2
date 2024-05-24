@@ -1,7 +1,7 @@
 /*
- * ÀÏÀÚ : 24.05.24 (11week)
- * ¹üÀ§ : Chapter 9. ÀÚ¹ÙÀÇ ÀÌº¥Æ® Ã³¸®
- * ¿¹Á¦	: 9-6
+ * ì¼ì : 24.05.24 (11week)
+ * ë²”ìœ„ : Chapter 9. ìë°”ì˜ ì´ë²¤íŠ¸ ì²˜ë¦¬
+ * ì˜ˆì œ	: 9-6
  */
 
 package chapter9;
@@ -10,34 +10,34 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class KeyCharEx extends JFrame {
-	private JLabel la = new JLabel("<Enter>Å°·Î ¹è°æ»öÀÌ ¹Ù²ò´Ï´Ù");
+	private JLabel la = new JLabel("<Enter>í‚¤ë¡œ ë°°ê²½ìƒ‰ì´ ë°”ë€ë‹ˆë‹¤");
 	public KeyCharEx() {
-		super("KeyListenerÀÇ ¹®ÀÚ Å° ÀÔ·Â ¿¹Á¦");
+		super("KeyListenerì˜ ë¬¸ì í‚¤ ì…ë ¥ ì˜ˆì œ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container c = getContentPane(); // ÄÁÅÙÆ® ÆÒ ¾Ë¾Æ³»±â
+		Container c = getContentPane(); // ì»¨í…íŠ¸ íŒ¬ ì•Œì•„ë‚´ê¸°
 		c.setLayout(new FlowLayout());
 		c.add(la);
-		c.addKeyListener(new MyKeyListener()); // Å° ¸®½º³Ê ´Ş±â
+		c.addKeyListener(new MyKeyListener()); // í‚¤ ë¦¬ìŠ¤ë„ˆ ë‹¬ê¸°
 		setSize(250, 150);
 		setVisible(true);
 
-		c.setFocusable(true); // ÄÁÅÙÆ®ÆÒÀÌ Æ÷Ä¿½º¸¦ ¹ŞÀ» ¼ö ÀÖµµ·Ï ¼³Á¤
-		c.requestFocus(); // ÄÁÅÙÆ® ÆÒ¿¡ Æ÷Ä¿½º ¼³Á¤. Å° ÀÔ·Â °¡´ÉÇØÁü
+		c.setFocusable(true); // ì»¨í…íŠ¸íŒ¬ì´ í¬ì»¤ìŠ¤ë¥¼ ë°›ì„ ìˆ˜ ìˆë„ë¡ ì„¤ì •
+		c.requestFocus(); // ì»¨í…íŠ¸ íŒ¬ì— í¬ì»¤ìŠ¤ ì„¤ì •. í‚¤ ì…ë ¥ ê°€ëŠ¥í•´ì§
 	}
 
-	class MyKeyListener extends KeyAdapter { // Å° ¸®½º³Ê
+	class MyKeyListener extends KeyAdapter { // í‚¤ ë¦¬ìŠ¤ë„ˆ
 		public void keyPressed(KeyEvent e) {
-			// ÀÓÀÇÀÇ »öÀ» ¸¸µé±â À§ÇØ ·£´ıÇÏ°Ô r, g, b ¼ººĞ »ı¼º
-			int r = (int) (Math.random() * 256); // 0~255 »çÀÌÀÇ ÀÓÀÇÀÇ red ¼ººĞ
-			int g = (int) (Math.random() * 256); // 0~255 »çÀÌÀÇ ÀÓÀÇÀÇ green ¼ººĞ
-			int b = (int) (Math.random() * 256); // 0~255 »çÀÌÀÇ ÀÓÀÇÀÇ blue ¼ººĞ
+			// ì„ì˜ì˜ ìƒ‰ì„ ë§Œë“¤ê¸° ìœ„í•´ ëœë¤í•˜ê²Œ r, g, b ì„±ë¶„ ìƒì„±
+			int r = (int) (Math.random() * 256); // 0~255 ì‚¬ì´ì˜ ì„ì˜ì˜ red ì„±ë¶„
+			int g = (int) (Math.random() * 256); // 0~255 ì‚¬ì´ì˜ ì„ì˜ì˜ green ì„±ë¶„
+			int b = (int) (Math.random() * 256); // 0~255 ì‚¬ì´ì˜ ì„ì˜ì˜ blue ì„±ë¶„
 
-			switch (e.getKeyChar()) { // ÀÔ·ÂµÈ Å° ¹®ÀÚ
-				case '\n': // <Enter> Å° ÀÔ·Â
+			switch (e.getKeyChar()) { // ì…ë ¥ëœ í‚¤ ë¬¸ì
+				case '\n': // <Enter> í‚¤ ì…ë ¥
 					la.setText("r=" + r + ", g=" + g + ", b=" + b);
-					getContentPane().setBackground(new Color(r, g, b)); // ÄÁÅÙÆ®ÆÒÀÇ ¹è°æ»ö ¼³Á¤
+					getContentPane().setBackground(new Color(r, g, b)); // ì»¨í…íŠ¸íŒ¬ì˜ ë°°ê²½ìƒ‰ ì„¤ì •
 					break;
-				case 'q': System.exit(0); // ÇÁ·Î±×·¥ Á¾·á
+				case 'q': System.exit(0); // í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 			}
 		}
 	}
