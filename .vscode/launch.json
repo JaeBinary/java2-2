@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "FlowLayoutEx",
+            "request": "launch",
+            "mainClass": "chapter8.FlowLayoutEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "MyFrame",
+            "request": "launch",
+            "mainClass": "chapter8.MyFrame",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "ContentPaneEx",
+            "request": "launch",
+            "mainClass": "chapter8.ContentPaneEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "MouseAdapterEx",
             "request": "launch",
             "mainClass": "chapter9.MouseAdapterEx",
