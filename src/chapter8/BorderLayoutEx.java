@@ -4,9 +4,9 @@
  * 예제 : 8-4. BorderLayout 배치관리자 활용
  */
 
- package chapter8;		// chapter8 패키지에 속하는 클래스임을 명시
- import javax.swing.*;	// 자바 스윙 라이브러리의 모든 클래스를 임포트
- import java.awt.*;		// 자바 AWT 라이브러리의 모든 클래스를 임포트
+ package chapter8;			// chapter8 패키지에 속하는 클래스임을 명시
+ import javax.swing.*;		// 자바 스윙 라이브러리의 모든 클래스를 임포트
+ import java.awt.*;			// 자바 AWT 라이브러리의 모든 클래스를 임포트
  
  /* BorderLayoutEx 클래스는 JFrame 클래스를 상속받음 */
  public class BorderLayoutEx extends JFrame {
