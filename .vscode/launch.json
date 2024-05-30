@@ -6,6 +6,48 @@
     "configurations": [
         {
             "type": "java",
+            "name": "HashMapDicEx",
+            "request": "launch",
+            "mainClass": "chapter7.HashMapDicEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "IteratorEx",
+            "request": "launch",
+            "mainClass": "chapter7.IteratorEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "ArrayListEx",
+            "request": "launch",
+            "mainClass": "chapter7.ArrayListEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "PointVectorEx",
+            "request": "launch",
+            "mainClass": "chapter7.PointVectorEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "VectorEx",
+            "request": "launch",
+            "mainClass": "chapter7.VectorEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "MyStack",
+            "request": "launch",
+            "mainClass": "chapter7.MyStack",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "FlowLayoutEx",
             "request": "launch",
             "mainClass": "chapter8.FlowLayoutEx",

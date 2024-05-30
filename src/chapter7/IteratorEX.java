@@ -1,34 +1,37 @@
-package chapter7;
-import java.util.*;
+/*
+ * 일자 : 24.05.03 (9week)
+ * 범위 : Chapter 7. 컬렉션과 제네릭
+ * 예제 : 7-4. Iterator<Integer>를 이용하여 정수 벡터 검색
+ */
 
-public class IteratorEX {
-    public static void main(String[] args) {
-        // 벡터 v 생성 및 선언
-        Vector<Integer> v = new Vector<Integer>();
-        // 요소 5 4 -1 후 2번 인덱스에 100 넣어서 결과는 5 4 100 -1
-        v.add(5);
-        v.add(4);
-        v.add(-1);
-        v.add(2, 100);
-
-        // Iterator 생성 후 v의 iterator()로 선언
-        Iterator<Integer> it = v.iterator();
-        // hasNext()는 다음 요소가 남아있으면 true 리턴. next()와의 시너지로 요소 마지막까지 반복.
-        while(it.hasNext()) {
-            // next()는 다음 요소 리턴. 요소를 뽑기 때문에 다음 요소로 넘어감
-            int n = it.next();
-            System.out.println(n);
-        }
-
-        // 합 구하기
-        int sum = 0;
-        // 위에서 이미 끝까지 뽑았기 때문에 다시 선언해주어야함.
-        it = v.iterator();
-        // 같은 방식
-        while(it.hasNext()) {
-            int n = it.next();
-            sum += n;
-        }
-        System.out.println("벡터에 있는 정수의 합: " + sum);
-    }
-}
+ package chapter7;				// chapter7 패키지에 속하는 클래스임을 명시
+ import java.util.*;			// 자바 유틸리티 패키지의 모든 클래스를 임포트
+ 
+ public class IteratorEx {
+	 public static void main(String[] args) {
+		 // 정수 값만 다루는 제네릭 벡터 생성
+		 Vector<Integer> v = new Vector<Integer>();
+		 v.add(5);	// 5를 벡터에 추가
+		 v.add(4);	// 4를 벡터에 추가
+		 v.add(-1);		// -1을 벡터에 추가
+		 v.add(2, 100);	// 4와 -1 사이에 100을 삽입
+ 
+		 // Iterator를 이용한 모든 정수 출력
+		 Iterator<Integer> it = v.iterator();	// Iterator 객체 얻기
+		 while(it.hasNext()) {		// 다음 요소가 있는지 확인
+			 int n = it.next();			// 다음 요소 가져오기
+			 System.out.println(n);		// 정수 출력
+		 }
+ 
+		 // Iterator를 이용하여 모든 정수 더하기
+		 int sum = 0;			// 합을 저장할 변수 초기화
+		 it = v.iterator();		// Iterator 객체 얻기
+		 while(it.hasNext()) {		// 다음 요소가 있는지 확인
+			 int n = it.next();			// 다음 요소 가져오기
+			 sum += n; 					// sum에 더하기
+		 }
+		 // 합 출력
+		 System.out.println("벡터에 있는 정수 합 : " + sum);
+	 }
+ }
+ 
