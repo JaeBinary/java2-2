@@ -6,6 +6,97 @@
     "configurations": [
         {
             "type": "java",
+            "name": "OptionPaneEx",
+            "request": "launch",
+            "mainClass": "chapter10.OptionPaneEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "MenuActionEventEx",
+            "request": "launch",
+            "mainClass": "chapter10.MenuActionEventEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "MenuEx",
+            "request": "launch",
+            "mainClass": "chapter10.MenuEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "ComboActionEx",
+            "request": "launch",
+            "mainClass": "chapter10.ComboActionEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "ListEx",
+            "request": "launch",
+            "mainClass": "chapter10.ListEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "TextAreaEx",
+            "request": "launch",
+            "mainClass": "chapter10.TextAreaEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "TextFieldEx",
+            "request": "launch",
+            "mainClass": "chapter10.TextFieldEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "RadioButtonEx",
+            "request": "launch",
+            "mainClass": "chapter10.RadioButtonEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "CheckBoxItemEventEx",
+            "request": "launch",
+            "mainClass": "chapter10.CheckBoxItemEventEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "CheckBoxEx",
+            "request": "launch",
+            "mainClass": "chapter10.CheckBoxEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "ButtonImageEx",
+            "request": "launch",
+            "mainClass": "chapter10.ButtonImageEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "LabelEx",
+            "request": "launch",
+            "mainClass": "chapter10.LabelEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "JComponentEx",
+            "request": "launch",
+            "mainClass": "chapter10.JComponentEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "HashMapDicEx",
             "request": "launch",
             "mainClass": "chapter7.HashMapDicEx",

@@ -10,6 +10,430 @@ public class 클래스명 {
 }
 ```
 
+
+# 31/05/2024 (12week)
+# Chapter 10 - 스윙 컴포넌트 활용
+## 1. GUI를 구성하는 2가지 방법
+### 1.1) 컴포넌트 기반 GUI 프로그래밍
+- GUI 구성이 쉽다.
+- 스윙 패키지에 포함된 GUI 컴포넌트를 이용한다.
+- 일반적인 GUI 프로그램에 적합하다.
+
+### 1.2) 그래픽 기반 GUI 프로그래밍
+- 작업 부담이 높다.
+- 선, 원, 도형, 이미지 등을 직접 그려 그래픽 화면을 구성한다.
+- 자유로운 GUI 프로그램에 적합하다.
+
+## 2. 스윙 컴포넌트의 공통 메소드
+### 2.1) 컴포넌트의 모양과 관련된 메소드
+```java
+void setForeground(Color)               // 전경색 설정(앞쪽색)
+void setBackground(Color)               // 배경색 설정(뒤쪽색)
+void setOpaque(boolean)                 // 불투명성 설정
+void setFont(Font)                      // 폰트 설정
+Font getFont()                          // 폰트를 리턴
+```
+
+### 2.2) 컴포넌트의 상태와 관련된 메소드
+```java
+void setEnabled(boolean)                // 컴포넌트 활성화 설정
+void setVisible(boolean)                // 컴포넌트 보이기 설정
+boolean isVisible()                     // 컴포넌트 보이기 상태를 리턴
+```
+
+### 2.3) 컴포넌트의 위치와 크기에 관련된 메소드
+```java
+int getWidth()                          // 가로 크기를 리턴
+int getHeight()                         // 세로 크기를 리턴
+int getX()                              // 컴포넌트의 x 좌표를 리턴
+int getY()                              // 컴포넌트의 y 좌표를 리턴
+void setLocation(int, int)              // 컴포넌트의 위치를 설정
+void setSize(int, int)                  // 컴포넌트의 크기를 설정
+```
+
+### 2.4) 컨테이너에 대한 메소드
+```java
+Component add(Component)                // 자식 컴포넌트를 추가
+void remove(Component)                  // 자식 컴포넌트를 제거
+void removeAll(Component)               // 모든 자식 컴포넌트를 제거
+Container getParent()                   // 부모 컨테이너를 리턴
+Container getTopLevelAncestor()         // 최상위 부모 컨테이너를 리턴
+Component[] getComponents()             // 자식 컴포넌트 배열을 리턴
+```
+
+## 3. JLable(레이블 컴포넌트)
+- 문자열이나 이미지를 컴포넌트화하여 출력하기 위해서 사용
+
+### 3.1) 생성자
+```java
+JLabel()                                                                // 빈 레이블을 생성
+
+JLabel(Icon image)                                                      // 이미지 레이블을 생성
+// 예제
+ImageIcon img = new ImageIcon("이미지 경로");
+JLabel jLabel = new JLabel(img);
+
+JLabel(String text)                                                     // 문자열 레이블을 생성
+// 예제
+JLabel jLabel = new JLabel("문자열 레이블 생성 예제");
+
+JLabel(String text, Icon image, int hAlign)                             // 문자열과 이미지를 모두 포함하는 레이블을 생성
+// 예제
+ImageIcon img = new ImageIcon("이미지 경로");
+JLabel jLabel = new JLabel("텍스트 내용", img, SwingConstants.CENTER);   // CENTER, LEFT, RIGHT 중 하나로 설정
+```
+
+## 4. JButton(버튼 컴포넌트)
+- 버튼 모양의 컴포넌트
+- 버튼을 선택하면 Action 이벤트 발생
+
+### 4.1) 생성자
+```java
+JButton() // 빈 버튼 생성
+
+JButton(Icon image) // 이미지 버튼을 생성
+// 예시
+JButton("이미지 경로"); // 실제 경로를 입력
+
+JButton(String text) // 문자열 버튼을 생성
+// 예시
+JButton("문자열을 입력");
+
+JButton(String text, Icon image) // 문자열과 이미지 모두 포함하는 버튼을 생성
+```
+
+## 5. 이미지 버튼 만들기
+### 5.1) 하나의 버튼에 3개의 이미지를 연결
+- 마우스 접근에 따라서 서로 다른 3개의 이미지를 출력할 수 있다.
+- 사용자의 버튼 조작에 따른 시각적 이미지를 부여할 수 있다.
+
+#### 5.1.1) 버튼이 기본 상태일 경우 출력되는 이미지
+```java
+JButton.setlcon(image)
+```
+
+#### 5.1.2) 마우스가 버튼 위에 있을 경우 출력되는 이미지
+```java
+JButton.setRolloverIcon(image)
+```
+
+#### 5.1.3) 마우스가 버튼을 누르고 있는 동안 출력되는 이미지
+```java
+JButton.setPressedIcon(image)
+```
+
+### 5.2) 버튼과 레이블의 정렬
+#### 5.2.1) 수평 정렬
+- 컴포넌트 내에 이미지와 텍스트의 수평 위치를 정렬
+```java
+void setHorizontalAlignment(int align)
+SwingConstants.(CENTER, LEFT, RIGHT) 중에 하나를 입력
+
+```
+
+#### 5.2.2) 수직 정렬
+- 컴포넌트 내에 이미지와 텍스트의 수직 위치를 정렬
+```java
+void setVerticalAlignment(int align)
+SwingConstants.(TOP, CENTER, BOTTOM) 중에 하나를 입력
+```
+
+## 6. JCheckBox
+- 선택(selected)과 비선택(deselected) 두 가지 상태만 가진다.
+- 이미지 아이콘을 가진 체크박스는 체크 박스 모양이 출력되지 않는다.
+
+### 6.1) 생성자
+```java
+JCheckBox()                                             // 빈 체크박스를 생성
+JCheckBox(String text)                                  // 문자열 체크박스를 생성
+JCheckBox(String text, boolean selected)                // 문자열 체크박스를 생성, 체크 상태를 설정
+// 예제
+JCheckBox jCheckBox = new JCheckBox("문자열 입력");
+JCheckbox jCheckBox = new JCheckBox("문자열 입력", true);
+
+
+JCheckBox(Icon image)                                   // 이미지 체크박스를 생성
+JCheckBox(Icon image, boolean selected)                 // 이미지 체크박스를 생성, 체크 상태를 설정
+// 예제
+JCheckBox("이미지경로");
+JCheckBox("이미지경로", true);
+
+
+JCheckBox(String text, Icon image)                      // 문자열과 이미지를 가지는 체크박스를 생성
+JCheckBox(String text, Icon image, boolean selected)    // 문자열과 이미지를 가지는 체크박스, 체크 상태를 설정
+```
+
+### 6.2) 이미지 아이콘을 가지는 체크 박스 생성
+- 체크 박스 모양이 출력되지 않는다.
+- 선택 상태에 따라 표현하는 이미지 아이콘을 따로 설정해야 한다.
+```java
+// 실사용에서는 실제 이미지 경로를 입력
+ImageIcon normalIcon = new ImageIcon("normalIcon 이미지 경로");
+ImageIcon selectedIcon = new ImageIcon("selectIcon 이미지 경로");
+JCheckBox jCheckBox = new JCheckBox("예제", normalIcon);
+jCheckBox.setSelectedIcon(selectedIcon);
+```
+
+### 6.3) Item 이벤트 처리
+#### 6.3.1) 체크박스 또는 라디오 버튼의 선택 상태가 바뀔 때 발생하는 이벤트
+```java
+JCheckBox jCheckBox = new JCheckBox("버튼");
+jCheckBox.setSelected(true);
+// 프로그램에서 선택 상태를 변경
+```
+
+#### 6.3.2) ItemListener 인터페이스의 추상 메소드
+```java
+void itemStateChanged(ItemEvent e)
+// 선택 또는 해제 상태가 변경되는 경우에 호출된다.
+```
+
+#### 6.3.3) ItemEvent의 주요 메소드
+```java
+int getStateChange()
+// 선택된 경우 ItemEvent.SELECTED를 리턴
+// 해제된 경우 ItemEvent.DESELECTED를 리턴
+
+Object getItem()
+// 이벤트를 발생시킨 아이템 객체를 리턴
+```
+
+## 7. JRadioButton(라디오 버튼 컴포넌트)
+- 여러 버튼으로 그룹을 형성하고, 하나만 선택되는 버튼
+- 다른 버튼을 선택 시, 그 전에 선택한 버튼은 자동으로 선택 해제
+- 이미지를 가진 라디오버튼의 생성 및 다루기는 체크박스와 완전히 동일한다.
+
+### 7.1) 생성자
+```java
+JRadioButton()              // 빈 라디오버튼을 생성
+JRadioButton(String text)   // 문자열 라디오버튼을 생성
+JRadioButton(String text, boolean selected)
+// 문자열 라디오버튼을 생성, 체크 상태를 설정
+
+JRadioButton(Icon image)    // 이미지 라디오버튼을 생성
+JRadioButton(Icon image, boolean selected)
+// 이미지 라디오버튼을 생성, 체크 상태를 설정
+
+JRadioButton(String text, Icon image)
+// 문자열과 이미지를 포함하는 라디오버튼을 생성
+JRadioButton(String text, Icon image, boolean selected)
+// 문자열과 이미지를 포함하는 라디오버튼을 생성, 체크 상태를 설정
+```
+
+### 7.2) 라디오 버튼 생성 과정
+```java
+// 1. 버튼 그룹 객체를 생성한다.
+ButtonGroup buttonGroup = new ButtonGroup();
+
+// 2. 라디오버튼을 생성한다.
+JRadioButton btn1 = new JRadioButton("btn1");
+JRadioButton btn2 = new JRadioButton("btn2");
+JRadioButton btn3 = new JRadioButton("btn3");
+
+// 3. 생성한 라디오버튼을 버튼 그룹에 삽입한다.
+buttonGroup.add(btn1);
+buttonGroup.add(btn2);
+buttonGroup.add(btn3);
+
+// 4. 라디오 버튼을 컨테이너에 삽입
+Container.add(btn1);
+Container.add(btn2);
+Container.add(btn3);
+```
+
+## 8. JTextField(텍스트 필드 컴포넌트)
+- 한 줄짜리 문자열(텍스트) 입력창을 구현한 컴포넌트이다.
+- ENTER 키가 입력되면 Action 이벤트가 발생
+- 입력 가능한 문자 개수와 입력 창의 크기는 서로 다른다.
+
+### 8.1) 생성자
+```java
+JTextField()                            // 빈 텍스트필드를 생성
+JTextField(int column)                  // 열의 개수가 column개인 텍스트필드를 생성
+JTextField(String text)                 // text가 입력되어있는 텍스트필드를 생성
+JTextField(String text, int column)     // 열의 개수는 column개이며, text가 입력되어있는 텍스트필드를 생성
+```
+
+### 8.2) 주요 메소드
+#### 8.2.1) 텍스트필드 내의 문자열을 편집하지 못하게 하는 메소드
+```java
+JTextField.setEditable(false)
+```
+
+#### 8.2.2) 텍스트필드의 입력 창에 문자열을 출력하는 메소드
+```java
+JTextField.setText(text)
+```
+
+#### 8.2.3) 텍스트필드 의 입력 창의 문자열의 폰트를 지정하는 메소드
+```java
+JTextField.setFont(Font)
+```
+
+## 9. TextArea(텍스트영역 컴포넌트)
+- 여러 줄을 입력할 수 있는 텍스트 입력 창 컴포넌트
+- JScrollPane 컴포넌트에 삽입 시 스크롤바를 지원
+
+### 9.1) 생성자
+```java
+JTextArea()                             // 빈 텍스트영역을 생성
+JTextArea(int rows, int columns)        // rows x columns 크기의 텍스트영역을 생성
+JTextArea(String text)                  // text 문자열이 입력된 텍스트영역을 생성
+JTextArea(String text, int rows, int columns)
+// 입력 창에 text가 입력되어있으며, rows x columns 크기의 텍스트영역을 생성
+```
+
+## 10. JList< E >(리스트 컴포넌트)
+- 여러 아이템들을 리스트 형태로 보여주고 선택하는 컴포넌트
+- JComboBox< E >와 기본적으로는 같은 기능이다.
+- JScrollPane에 삽입하여 스크롤 지원 가능
+- < E >에 지정된 타입의 객체만 저장하는 리스트
+
+### 10.1) 생성자
+```java
+JList<E>                        // 빈 리스트를 생성
+JList<E>(Vector listData)       // 벡터로부터 아이템을 받는 리스트를 생성
+JList<E>(Object[] listData)     // 배열로부터 아이템을 받는 리스트를 생성
+```
+
+### 10.2) 리스트 생성 방법
+#### 10.2.1) 객체 배열로 아이템을 제공
+```java
+String[] numberList = {"one", "two", "three", "four", "five", "six", "seven"};
+JList<String> numStrList = new JList<String>(numberList);
+```
+
+#### 10.2.2) Vector로 아이템을 제공
+```java
+Vector v = new Vector();
+v.add("one");
+v.add("two");
+v.add("three");
+JList<String> numStrList = new JList<String>(v);
+```
+
+#### 10.2.3) 빈 리스트 컴포넌트 생성 후, setListData() 메소드 사용
+```java
+ImageIcon[] imgs = {new ImageIcon("img1.png"), new ImageIcon("img2.png"), new ImageIcon("img3.png"), new ImageIcon("img4.png")};
+
+JList<ImageIcon> imgList = new JList<ImageIcon>();
+imgList.setListData(imgs);
+```
+
+#### 10.2.4) 스크롤 지원
+```java
+String[] numberList = {"one", "two", "three", "four", "five", "six", "seven"};
+JList<String> scrollList = new JList<String>(numberList);
+new JScrollPane(scrollList);
+```
+
+### 10.3) 리스트 아이템 변경
+- 벡터 or 배열로 리스트 생성 후 벡터 or 배열을 수정해도 리스트는 수정이 되지 않는다.
+- 벡터 or 배열 수정 후 setList() 메소드 사용
+```java
+// 벡터 수정 전
+Vector<String> v = new Vector<String>();
+v.add("one");
+v.add("two");
+v.add("three");
+JList<String> vectorList = new JList<String>(v);
+
+// 벡터 수정 후(요소 추가)
+v.add("four");
+v.add("five");
+vectorList.setListData(v);          // setListData로 벡터를 새로 달기
+```
+
+## 11. JComboBox< E >(콤보박스)
+- 텍스트 필드와 버튼 그리고 드롭다운 리스트로 구성
+- JList< E >와 비슷하게 사용
+
+### 11.1) 생성자
+```java
+JComboBox<E>()                      // 빈 콤보박스를 생성
+JComboBox<E>(Vector listData)       // 벡터로부터 받은 아이템으로 콤보박스를 생성
+JComboBox<E>(Object[] listData)     // 배열로부터 받은 아이템으로 콤보박스를 생성
+```
+
+### 11.2) Action 이벤트
+- 콤보박스 아이템 선택시 Action 이벤트가 발생한다.
+- 선택 상태인 아이템의 인덱스를 리턴
+```java
+getSelectedIndex()
+```
+- 선택 상태인 아이템 객체의 레퍼런스를 리턴
+```java
+ selectedItem()
+```
+
+## 12. JSlider(슬라이더)
+- 마우스로 움직이면서 값을 선택하는 컴포넌트
+
+### 12.1) 생성자
+```java
+JSlider()                               // 기본 슬라이더를 생성
+JSlider(int orientation)                // orientation 방향 슬라이더를 생성
+JSlider(int min, int max, int val)      // min, max, 초기값(val)을 가진 슬라이더를 생성
+JSlider(int orietation, int min, int max, int val)
+// orientation 방향이며, min, max, 초기값(val)을 가지는 슬라이더를 생성
+```
+
+### 12.2) 슬라이더의 모양 제어
+#### 12.2.1) 방향제어
+```java
+void setOrientation(int orientation)
+// HORIZONTAL, VERTICAL 둘 중 하나로 설정
+```
+
+#### 12.2.2) 최소/최대 값 설정
+```java
+void setMinimum(int min)    // 최소값 설정
+void setMaximum(int max)    // 최대값 설정
+```
+
+#### 12.2.3) label 보이기 설정
+```java
+void setPaintLabels(true/false)
+// true - 보이기, false - 감추기
+```
+
+#### 12.2.4) tick 보이기 설정
+```java
+void setPaintTicks(true/false)
+// true - 눈금 보이기, false - 눈금 숨기기
+```
+
+#### 12.2.5) track 보이기 설정
+```java
+void setPaintTrack(true/false)
+// true - track 보이기, false - track 숨기기
+```
+
+#### 12.2.6) 큰 눈금 간격 설정
+```java
+void setMajorTickSpacing(int space)
+```
+
+#### 12.2.7) 작은 눈금 간격 설정
+```java
+void setMinorTickSpacing(int space)
+```
+
+#### 12.2.8) 슬라이더 값 제어
+```java
+void setValue(int n)
+// 슬라이더 값을 n으로 설정
+// 슬라이더의 손잡이 위치가 변경된다.
+```
+
+## 13. Change 이벤트
+- JSlider의 값이 변경되면 이벤트 발생
+    - 손잡이를 움직이는 경우
+    - setValue(int n) 메소드를 사용하는 경우
+```java
+void stateChanged(ChangeEvent e)
+```
+
 # 24/05/2024 (11week)
 # Chapter 9 - 자바의 이벤트 처리
 ## 1. 이벤트 기반 프로그래밍(Event Driven Programming)
