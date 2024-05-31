@@ -738,7 +738,7 @@ public void mouseClicked(MouseEvent e) {
 }
 ```
 
-# 17/05/2024 (10week)ㄷ
+# 17/05/2024 (10week)
 # Chapter 8 - 자바 GUI 스윙 기초
 ## 1. GUI(Graphical User Interface)
 ### 1.1) GUI의 목적
