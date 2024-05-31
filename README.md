@@ -10,6 +10,7 @@ public class 클래스명 {
 }
 ```
 
+# (13week)
 
 # 31/05/2024 (12week)
 # Chapter 10 - 스윙 컴포넌트 활용
@@ -739,20 +740,135 @@ public void mouseClicked(MouseEvent e) {
 
 # 17/05/2024 (10week)
 # Chapter 8 - 자바 GUI 스윙 기초
-### 배치관리자 대표 유형 4가지
-- FlowLayout 배치관리자
-- BorderLayout 배치관리자
-- GridLayout 배치관리자
-- CardLayout
+## 1. GUI(Graphical User Interface)
+### 1.1) GUI의 목적
+- 그래픽을 이용하기 위함.
+    - 사용자에게 이해하기 쉬운 모양의 정보를 제공
 
-### 컨테이너의 디폴트 배치관리자
-|AWT와 스윙 컨테이너|디폴트 배치관리자|
-|:---:|:---:|
-|Window, JWindow|BorderLayout|
-|Frame, JFrame|BorderLayout|
-|Dialog, JDialog|BorderLayout|
-|Panel, JPanel|FlowLayout|
-|Applet, JApplet|FlowLayout|
+### 1.2) 자바 GUI 특징
+- 강력한 GUI 컴포넌트를 제공한다.
+- GUI 프로그래밍이 쉽다.
+
+### 1.3) 자바 GUI 프로그래밍 방법
+- GUI 컴포넌트와 그래픽을 이용
+    - AWT 패키지와 Swing 패키지 이용
+- AWT : java.awt 패키지 사용
+- Swing : javax.swing 패키지 사용
+
+## 2. AWT(Abstract Windowing Toolkit)
+- 자바가 처음 나온 시기에 함께 배포된 GUI 라이브러리
+- java.awt 패키지를 사용
+- AWT 컴포넌트는 중량 컴포넌트이다.
+    - 처리 속도는 빠르지만 운양체제에 부담이 많이 간다.
+    - native 운영체제의 GUI 컴포넌트의 도움을 받기 때문이다.
+
+## 3. Swing(스윙)
+- AWT 기술 기반으로 순수 자바 언어로 만들어진 라이브러리
+- AWT 기능 + 고급 컴포넌트
+- AWT 컴포넌트에 J를 붙인 이름의 클래스
+- 그 외 J로 시작하는 클래스
+- javax.swing 패키지를 사용
+- Swing 컴포넌트는 경량 컴포넌트
+    - native 운영체제에 의존하지 않는다.
+
+### 3.1) Swing 클래스의 특징
+- 클래스 이름이 J로 시작
+- 쉽게 GUI 프로그래밍이 가능
+- JComponent를 상속받는 클래스
+    - 공통적인 속성을 구현한 추상 클래스 (인스턴스 생성하지 않는다.)
+- AWT의 Container를 상속받는 클래스
+    - JFrame, JDialog 등...
+
+## 4. Component(컴포넌트)
+- 컨테이너에 포함되어야 화면에 출력할 수 있는 순수 컴포넌트
+- 모든 컴포넌트는 java.awt.Component를 상속 받는다.
+- 모든 스윙 컴포넌트는 javax.swing.JComponent를 상속 받는다.
+
+## 5. Container(컨테이너)
+- 다른 GUI 컴포넌트를 포함할 수 있는 컴포넌트
+- java.awt.Container를 상속 받는다.
+- 다른 컨테이너에 포함 가능
+- AWT 컨테이너와 Swing 컨테이너가 존재
+
+### 5.1) 최상위 컨테이너
+- 다른 컨테이너에 속하지 않고도 독립적으로 출력이 가능한 컨테이너
+- 모든 컴포넌트는 컨테이너에 포함되어야 화면에 출력이 가능
+- JFrame, JDialog, JApplet
+
+## 6. JFrame(스윙 프레임)
+- 모든 스윙 컴포넌트를 포함하는 최상위 GUI 컨테이너
+- JFrame을 상속
+- 컴포넌트를 화면에 출력하기 위해서는 스윙 프레임에 포함
+
+### 6.1) 스윙 프레임의 기본 구성
+- 프레임 : 스윙 프로그램의 기본 틀
+- 메뉴바 : 메뉴들이 포함되는 공간
+- 컨텐트 팬 : GUI 컴포넌트들이 포함되는 공간
+
+### 6.2) 프레임에 컴포넌트 붙이기
+```java
+// 프레임의 타이틀을 다는 방법
+public SwingFrameEx() {
+    // 1.메소드를 호출하여 설정
+    setTitle("타이틀 이름");
+    // 2. Jframe의 생성자를 호출하는 방법
+    super("타이틀 이름");
+}
+
+// 컨텐트팬 알아내기
+Container contentPane = frame.getContentPane();
+
+// 컴포넌트 달기
+Container contentPane = frame.getContentPane();
+JButton jb = new JButton("OK");
+contentPane.add(jb);
+
+// 컨텐트팬 변경하기
+JPanel jp = new JPanel();
+frame.setContentPane(jp);
+```
+
+## 7. 컨테이너는 생성 시 디폴트 배치관리자를 설정
+- Window, JWindow : BorderLayout
+- Frame, JFrame : BorderLayout
+- Dialog, JDialog : BorderLayout
+- Panel, JPanel : FlowLayout
+- Applet, JApplet : FlowLayout
+
+## 8. 새로운 배치관리자 설정
+- Container.setLayout(LayoutManager lm)
+    - lm을 새로운 배치관리자로 설정
+```java
+// JWindow에 FlowLayout로 설정
+JWindow jw = new JWindow();
+jw.setLayout(mew FlowLayout());
+
+// 컨텐트팬의 배치관리자를 FlowLayout으로 변경
+Container c = frame.getContentPane();
+c.setLayout(new FlowLayout());
+```
+
+### 8.1) FlowLayout
+- 컴포넌트를 왼쪽에서 오른쪽으로 배치
+- 그 후, 위에서 아래로 컴포넌트를 배치
+- 컨테이너 크기 변경 시 컴포넌트를 재배치
+ 
+### 8.2) BorderLayout
+- 컨테이너의 공간을 5개로 분할, 배치
+    - East, West, Center, South, North
+- 배치 방법 : add(Component comp, int index)
+- 컨테이너 크기 변경 시, 재배치
+
+### 8.3) GridLayout
+- 동일한 그리드(격자)로 분할하고 각 셀에 컴포넌트를 배치
+- 그리드는 생성자에 행과 열의 수를 지정
+- 컨테이너 크기 변경 시, 재배치
+
+### 8.4) 배치관리자가 없는 컨테이너
+- 컴포넌트의 절대 크기가와 절대 위치를 결정
+    - 컨테이너 크기를 변경하더라도 재배치하지 않는다.
+- 컴포넌트의 위치 또는 크기를 임의로 설정하고자 할 경우 사용
+- 컴포넌트를 겹쳐서 출력하고자 하는 경우 사용
 
 # 03/05/2024 (9week)
 # 13. 제네릭
