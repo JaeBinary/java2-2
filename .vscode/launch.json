@@ -6,6 +6,48 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TabAndThreadEx",
+            "request": "launch",
+            "mainClass": "chapter12.TabAndThreadEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "SynchronizedEx",
+            "request": "launch",
+            "mainClass": "chapter12.SynchronizedEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "VibratingFrame",
+            "request": "launch",
+            "mainClass": "chapter12.VibratingFrame",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "ThreadMainEx",
+            "request": "launch",
+            "mainClass": "chapter12.ThreadMainEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "RunnableTimerEx",
+            "request": "launch",
+            "mainClass": "chapter12.RunnableTimerEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "ThreadTimerEx",
+            "request": "launch",
+            "mainClass": "chapter12.ThreadTimerEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "OptionPaneEx",
             "request": "launch",
             "mainClass": "chapter10.OptionPaneEx",
