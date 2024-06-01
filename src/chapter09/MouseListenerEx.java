@@ -4,7 +4,7 @@
  * 예제 : 9-4. 마우스 이벤트 리스너 작성 연습 - 마우스로 문자열 이동시키기
  */
 
- package chapter9;				// chapter9 패키지에 속하는 클래스임을 명시
+ package chapter09;				// chapter9 패키지에 속하는 클래스임을 명시
  import java.awt.*;				// AWT 패키지 임포트
  import java.awt.event.*;		// AWT 이벤트 패키지 임포트
  import javax.swing.*;			// Swing 패키지 임포트

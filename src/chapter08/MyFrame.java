@@ -4,8 +4,8 @@
  * 예제 : 8-1. 300x300 크기의 스윙 프레임 만들기
  */
 
- package chapter8; 			// chapter8 패키지에 속하는 클래스임을 명시
- import javax.swing.*; 		// 자바 스윙 라이브러리의 모든 클래스를 임포트
+ package chapter08; 			// chapter8 패키지에 속하는 클래스임을 명시
+ import javax.swing.*; 			// 자바 스윙 라이브러리의 모든 클래스를 임포트
  
  /* MyFrame 클래스는 JFrame 클래스를 상속받음 */
  public class MyFrame extends JFrame {

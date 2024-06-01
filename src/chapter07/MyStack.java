@@ -4,7 +4,7 @@
  * 예제 : 7-6. 제네릭 스택 만들기
  */
 
- package chapter7;				// chapter7 패키지에 속하는 클래스임을 명시
+ package chapter07;				// chapter7 패키지에 속하는 클래스임을 명시
 
  class GStack<T> { 	// 제네릭 스택 선언. 제네릭 타입 T
 	 int tos; 			// top of stack, 스택에 저장된 요소의 개수

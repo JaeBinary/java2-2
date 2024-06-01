@@ -4,7 +4,7 @@
  * 예제 : 9-1. 독립 클래스로 Action 이벤트 리스너 만들기
  */
 
- package chapter9;				// chapter9 패키지에 속하는 클래스임을 명시
+ package chapter09;				// chapter9 패키지에 속하는 클래스임을 명시
  import java.awt.*;				// AWT 패키지 임포트
  import java.awt.event.*;		// AWT 이벤트 패키지 임포트
  import javax.swing.*;			// Swing 패키지 임포트

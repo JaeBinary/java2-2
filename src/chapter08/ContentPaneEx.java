@@ -4,9 +4,9 @@
  * 예제 : 8-2. 3개의 버튼 컴포넌트를 가진 스윙 프레임 만들기
  */
 
- package chapter8; 			// chapter8 패키지에 속하는 클래스임을 명시
- import javax.swing.*; 		// 자바 스윙 라이브러리의 모든 클래스를 임포트
- import java.awt.*; 		// 자바 AWT 라이브러리의 모든 클래스를 임포트
+ package chapter08; 			// chapter8 패키지에 속하는 클래스임을 명시
+ import javax.swing.*; 			// 자바 스윙 라이브러리의 모든 클래스를 임포트
+ import java.awt.*; 			// 자바 AWT 라이브러리의 모든 클래스를 임포트
  
  /* ContentPaneEx 클래스는 JFrame 클래스를 상속받음 */
  public class ContentPaneEx extends JFrame {

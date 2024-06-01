@@ -4,7 +4,7 @@
  * 예제 : 7-4. Iterator<Integer>를 이용하여 정수 벡터 검색
  */
 
- package chapter7;				// chapter7 패키지에 속하는 클래스임을 명시
+ package chapter07;				// chapter7 패키지에 속하는 클래스임을 명시
  import java.util.*;			// 자바 유틸리티 패키지의 모든 클래스를 임포트
  
  public class IteratorEx {

@@ -4,7 +4,7 @@
  * 예제 : 7-2. Point 클래스의 객체들만 저장하는 벡터 만들기
  */
 
- package chapter7;				// chapter7 패키지에 속하는 클래스임을 명시
+ package chapter07;				// chapter7 패키지에 속하는 클래스임을 명시
  import java.util.Vector;		// 자바 유틸리티 패키지에서 Vector 클래스를 임포트
  
  class Point {

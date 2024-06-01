@@ -4,7 +4,7 @@
  * 예제 : 7-5. HashMap<String, String>로 (영어, 한글) 단어 쌍으로 저장하고 검색하기
  */
 
- package chapter7;				// chapter7 패키지에 속하는 클래스임을 명시
+ package chapter07;				// chapter7 패키지에 속하는 클래스임을 명시
  import java.util.*;			// 자바 유틸리티 패키지의 모든 클래스를 임포트
  
  public class HashMapDicEx {

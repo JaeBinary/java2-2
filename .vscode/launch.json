@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MyFrame",
+            "request": "launch",
+            "mainClass": "chapter08.MyFrame",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "GridLayoutEx",
+            "request": "launch",
+            "mainClass": "chapter08.GridLayoutEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "TabAndThreadEx",
             "request": "launch",
             "mainClass": "chapter12.TabAndThreadEx",
