@@ -11,12 +11,12 @@
  
  public class OptionPaneEx extends JFrame {
 	 public OptionPaneEx() {
-		 setTitle("옵션 팬 예제"); 					// 프레임의 제목 설정
-		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 	// 프레임 닫기 버튼 클릭 시 프로그램 종료
-		 Container c = getContentPane(); 					// 컨텐트 팬을 가져옴
-		 setSize(500, 200); 					// 프레임의 크기 설정
-		 c.add(new MyPanel(), BorderLayout.NORTH); 			// 프레임의 북쪽에 MyPanel 추가
-		 setVisible(true); 								// 프레임을 화면에 표시
+		 setTitle("옵션 팬 예제"); 							  	  // 프레임의 제목 설정
+		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 				// 프레임 닫기 버튼 클릭 시 프로그램 종료
+		 Container c = getContentPane(); 								// 컨텐트 팬을 가져옴
+		 setSize(500, 200); 								// 프레임의 크기 설정
+		 c.add(new MyPanel(), BorderLayout.NORTH); 						// 프레임의 북쪽에 MyPanel 추가
+		 setVisible(true); 											// 프레임을 화면에 표시
 	 }
 	 
 	 class MyPanel extends Panel {
@@ -41,7 +41,7 @@
 						 tf.setText(name); 	// 사용자가 입력한 문자열을 텍스트 필드에 출력
 				 }
 			 });
- 
+
 			 // confirmBtn 버튼에 Action 리스너 등록
 			 confirmBtn.addActionListener(new ActionListener() {
 				 public void actionPerformed(ActionEvent e) {
