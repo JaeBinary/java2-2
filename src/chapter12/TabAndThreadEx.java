@@ -25,17 +25,17 @@
 		 g.fillRect(0, 0, width, this.getHeight()); 						// 바를 그림
 	 }
  
-	 synchronized void fill() { 				// 바를 채우는 메서드
-		 if (barSize == maxBarSize) { 			// 바가 꽉 찼으면
+	 synchronized void fill() { 		// 바를 채우는 메서드
+		 if (barSize == maxBarSize) { 	// 바가 꽉 찼으면
 			 try {
-				 wait(); 						// ConsumerThread에 의해 바의 크기가 줄어들 때까지 대기
+				 wait(); 				// ConsumerThread에 의해 바의 크기가 줄어들 때까지 대기
 			 } catch (InterruptedException e) {
 				 return;
 			 }
 		 }
-		 barSize++; 							// 바의 크기를 1 증가시킴
-		 repaint(); 							// 바를 다시 그림
-		 notify(); 								// 대기 중인 ConsumerThread 스레드를 깨움
+		 barSize++; 					// 바의 크기를 1 증가시킴
+		 repaint(); 					// 바를 다시 그림
+		 notify(); 						// 대기 중인 ConsumerThread 스레드를 깨움
 	 }
  
 	 synchronized void consume() { 		// 바를 소모하는 메서드
