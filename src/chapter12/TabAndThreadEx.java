@@ -17,7 +17,7 @@
 		 this.maxBarSize = maxBarSize;
 	 }
  
-	 public void paintComponent(Graphics g) { 	// 바를 그리는 메서드
+	 public void paintComponent(Graphics g) { 									// 바를 그리는 메서드
 		 super.paintComponent(g);
 		 g.setColor(Color.MAGENTA);
 		 int width = (int) (((double)(getWidth())) / maxBarSize * barSize); 	// 바의 길이 계산
@@ -25,30 +25,30 @@
 		 g.fillRect(0, 0, width, this.getHeight()); 						// 바를 그림
 	 }
  
-	 synchronized void fill() { 		// 바를 채우는 메서드
-		 if (barSize == maxBarSize) { 	// 바가 꽉 찼으면
+	 synchronized void fill() { 			// 바를 채우는 메서드
+		 if (barSize == maxBarSize) { 		// 바가 꽉 찼으면
 			 try {
-				 wait(); 				// ConsumerThread에 의해 바의 크기가 줄어들 때까지 대기
+				 wait(); 					// ConsumerThread에 의해 바의 크기가 줄어들 때까지 대기
 			 } catch (InterruptedException e) {
 				 return;
 			 }
 		 }
-		 barSize++; 					// 바의 크기를 1 증가시킴
-		 repaint(); 					// 바를 다시 그림
-		 notify(); 						// 대기 중인 ConsumerThread 스레드를 깨움
+		 barSize++; 						// 바의 크기를 1 증가시킴
+		 repaint(); 						// 바를 다시 그림
+		 notify(); 							// 대기 중인 ConsumerThread 스레드를 깨움
 	 }
  
-	 synchronized void consume() { 		// 바를 소모하는 메서드
-		 if (barSize == 0) { 			// 바가 비어있으면
+	 synchronized void consume() { 			// 바를 소모하는 메서드
+		 if (barSize == 0) { 				// 바가 비어있으면
 			 try {
-				 wait(); 				// 바의 크기가 0보다 커질 때까지 대기
+				 wait(); 					// 바의 크기가 0보다 커질 때까지 대기
 			 } catch (InterruptedException e) {
 				 return;
 			 }
 		 }
-		 barSize--; 					// 바의 크기를 1 감소시킴
-		 repaint(); 					// 바를 다시 그림
-		 notify(); 						// 대기 중인 이벤트 스레드를 깨움
+		 barSize--; 						// 바의 크기를 1 감소시킴
+		 repaint(); 						// 바를 다시 그림
+		 notify(); 							// 대기 중인 이벤트 스레드를 깨움
 	 }
  }
  
@@ -72,32 +72,32 @@
 	 }
  }
  
- public class TabAndThreadEx extends JFrame { 	// 메인 프레임 클래스 정의
-	 private MyLabel bar = new MyLabel(100); 	// 최대 바의 크기가 100인 MyLabel 객체 생성
+ public class TabAndThreadEx extends JFrame { 					// 메인 프레임 클래스 정의
+	 private MyLabel bar = new MyLabel(100); 		// 최대 바의 크기가 100인 MyLabel 객체 생성
  
-	 public TabAndThreadEx(String title) { 					// 생성자, 프레임 타이틀을 받아서 설정함
+	 public TabAndThreadEx(String title) { 						// 생성자, 프레임 타이틀을 받아서 설정함
 		 super(title);
-		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 	// 프로그램 종료 설정
-		 Container c = getContentPane(); 					// 컨텐트 팬 가져오기
-		 c.setLayout(null); 							// 레이아웃 설정하지 않음
-		 bar.setBackground(Color.ORANGE); 					// 바의 배경색 설정
-		 bar.setOpaque(true); 						// 투명도 설정
-		 bar.setLocation(20, 50); 						// 위치 설정
-		 bar.setSize(300, 20); 				// 크기 설정
-		 c.add(bar); 										// 컨텐트 팬에 바 추가
+		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		// 프로그램 종료 설정
+		 Container c = getContentPane(); 						// 컨텐트 팬 가져오기
+		 c.setLayout(null); 								// 레이아웃 설정하지 않음
+		 bar.setBackground(Color.ORANGE); 						// 바의 배경색 설정
+		 bar.setOpaque(true); 							// 투명도 설정
+		 bar.setLocation(20, 50); 							// 위치 설정
+		 bar.setSize(300, 20); 					// 크기 설정
+		 c.add(bar); 											// 컨텐트 팬에 바 추가
  
-		 c.addKeyListener(new KeyAdapter() { 				// 키 이벤트 리스너 추가
-			 public void keyPressed(KeyEvent e) { 			// 키 누름 이벤트 처리
-				 bar.fill(); 								// 바를 1씩 채움
+		 c.addKeyListener(new KeyAdapter() { 					// 키 이벤트 리스너 추가
+			 public void keyPressed(KeyEvent e) { 				// 키 누름 이벤트 처리
+				 bar.fill(); 									// 바를 1씩 채움
 			 }
 		 });
-		 setSize(350, 200); 					// 프레임 크기 설정
-		 setVisible(true); 								// 프레임 보이기
+		 setSize(350, 200); 						// 프레임 크기 설정
+		 setVisible(true); 									// 프레임 보이기
  
-		 c.setFocusable(true); 					// 컨텐트 팬이 포커스를 받을 수 있도록 설정
-		 c.requestFocus(); 									// 컨텐트 팬에 포커스 설정
-		 ConsumerThread th = new ConsumerThread(bar); 		// 소비자 스레드 생성
-		 th.start(); 										// 소비자 스레드 시작
+		 c.setFocusable(true); 						// 컨텐트 팬이 포커스를 받을 수 있도록 설정
+		 c.requestFocus(); 										// 컨텐트 팬에 포커스 설정
+		 ConsumerThread th = new ConsumerThread(bar); 			// 소비자 스레드 생성
+		 th.start(); 											// 소비자 스레드 시작
 	 }
  
 	 public static void main(String[] args) {
