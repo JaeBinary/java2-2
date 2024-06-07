@@ -5,7 +5,6 @@
  */
 
  package chapter12;                // chapter12 패키지에 속하는 클래스임을 명시
- import java.awt.*; 			   // AWT(추상 윈도우 툴킷) 패키지를 가져옴
  import java.awt.event.*;		   // AWT 이벤트 관련 패키지를 가져옴
  import javax.swing.*; 			   // Swing 패키지를 가져옴
  import java.util.Random; 		   // Random 클래스를 사용하기 위해 java.util 패키지를 가져옴
