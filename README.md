@@ -229,7 +229,7 @@ public static void main(String[] args) {
     - Thread 객체도 동기화 객체로 사용 가능
 - wait() : 다른 스레드가 notify()를 호출할 때까지 대기
 - notify() : 대기 중인 스레드를 RUNNABLE 상태로 만든다. (한 개의 스레드만 깨운다.)
--notifyAll() : 대기 중인 모든 스레드를 RUNNABLE 상태로 만든다. (synchronized 블록 내에서만 사용)
+- notifyAll() : 대기 중인 모든 스레드를 RUNNABLE 상태로 만든다. (synchronized 블록 내에서만 사용)
 
 # Chapter 11 - 그래픽
 ## 1. 스윙 컴포넌트 그리기
