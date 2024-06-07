@@ -6,6 +6,62 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GraphicsDrawLineMouseEx",
+            "request": "launch",
+            "mainClass": "chapter11.GraphicsDrawLineMouseEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "GraphicsDrawOvalMouseEx",
+            "request": "launch",
+            "mainClass": "chapter11.GraphicsDrawOvalMouseEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "GraphicsDrawImageEx2",
+            "request": "launch",
+            "mainClass": "chapter11.GraphicsDrawImageEx2",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "GraphicsDrawImageEx1",
+            "request": "launch",
+            "mainClass": "chapter11.GraphicsDrawImageEx1",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "GraphicsFillEx",
+            "request": "launch",
+            "mainClass": "chapter11.GraphicsFillEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "GraphicsDrawLineEx",
+            "request": "launch",
+            "mainClass": "chapter11.GraphicsDrawLineEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "GraphicsColorFontEx",
+            "request": "launch",
+            "mainClass": "chapter11.GraphicsColorFontEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "paintJPanelEx",
+            "request": "launch",
+            "mainClass": "chapter11.paintJPanelEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "MyFrame",
             "request": "launch",
             "mainClass": "chapter08.MyFrame",

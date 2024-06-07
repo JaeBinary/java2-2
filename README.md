@@ -10,7 +10,438 @@ public class 클래스명 {
 }
 ```
 
-# (13week)
+# 14/06/2024 (14week)
+
+# 07/06/2024 (13week)
+# Chapter 12 - 자바 스레드 기초
+## 1. 멀티태스킹(multi-tasking)
+- 하나의 응용 프로그램이 여러 개의 작업(task)을 동시에 처리하는 것
+
+## 2. 스레드와 멀티스레딩
+### 2.1) 스레드
+- 사용자가 작성한 코드
+- JVM(자바 가상 기계)에 의해 스케쥴링되어 실행되는 단위
+- JVM에 의한 실행 단위
+
+### 2.2) 자바의 멀티태스킹
+- 멀티스레딩만 가능하다.
+- 하나의 응용프로그램은 여러 개의 스레드로 구성 가능하다.
+
+### 2.3) 멀티스레딩 효과
+- 한 스레드가 대기하는 동안 다른 스레드를 실행할 수 있다.
+    - 프로그램 전체적으로 시간 지연을 줄일 수 있다.
+
+## 3. 자바 Thread
+- JVM에 의해 스케쥴되는 실행 단위의 코드 블럭
+- 스레드의 주기는 JVM에 의해 관리된다.
+
+### 3.1) JVM과 멀티 스레드의 관계
+- 하나의 JVM은 하나의 응용프로그램만 실행한다.
+- 하나의 응용 프로그램은 하나 이상의 스레드로 구성할 수 있다.
+> ※ 두 개의 응용프로그램을 동시에 실행하고자 하면 두 개의 JVM을 이용
+
+## 4. 스레드의 생성과 실행
+### 4.1) 실행을 위해 개발자가 하는 작업
+- 스레드 코드 작성
+- 스레드를 생성하고 JVM에게 스레드 코드 실행을 요청
+
+### 4.2) 스레드를 만들 때 주의사항
+- run() 메소드 종료 시 스레드도 종료
+- 한 번 종료한 스레드는 다시 시작시킬 수 없다.
+- 한 스레드에서 다른 스레드를 가젱 종료시킬 수 있다.
+
+### 4.3) 스레드 생성 방법
+#### 4.3.1) Thread 클래스를 상속
+- java.lang.Thread 클래스를 이용
+```java
+// 스레드 클래스 작성
+// Thread 클래스 상속
+class ThreadEx extends Thread {
+    ......
+    @Override
+    public void run() { // run() 메소드 오버라이딩
+        ......
+    } // 스레드 코드라고 부름
+      // 스레드 실행 시작
+    ......
+}
+```
+
+- 스레드 객체 생성 및 스레드 시작
+```java
+ThreadEx thread = new ThreadEx();   // 스레드 객체 생성
+thread.start();                     // start() 메소드 호출
+// 스레드로 작동 시작
+// JVM에 의해 스케쥴되기 시작한다.
+```
+#### 4.3.2) Runnable 인터페이스를 구현
+- java.lang.Runnable 인터페이스를 이용
+```java
+// Runnable 인터페이스 구현하여 클래스 작성
+class ThreadEx implements Runnable {
+    ......
+    @Override
+    public void run() { // run() 메소드 구현
+        ......
+    } // 스레드 코드, 스레드 실행 시작
+    ......
+}
+```
+
+- 스레드 객체 생성 및 스레드 시작
+```java
+Thread thread = new Thread(new ThreadEx());     // 스레드 객체 생성
+thread.start();                                 // 스레드 시작
+```
+
+## 5. 스레드의 상태
+- JVM에 의해 기록 관리된다.
+
+### 5.1) NEW
+- 스레드가 생성되었지만 아직 실행할 준비되지 않았다.
+
+### 5.2) RUNNABLE
+- 스레드가 실행 중 OR 실행 준비가 되어 스케쥴링을 대기하는 상태
+
+### 5.3) WAITING
+- wait() 메소드를 호출한 상태
+- 스레드 동기화 시에 사용
+- 다른 스레드가 notify(), notifyAll() 메소드를 호출하기를 기다리는 상태
+
+### 5.4) TIMED_WAITING
+- sleep() 메소드를 호출하여 대기 중인 상태
+
+### 5.5) BLOCK
+- 스레드가 입출력 작업을 요청하면 자바 가상 기계가 자동으로 BLOCK 상태로 만든다.
+
+### 5.6) TERMINATED
+- 스레드 종료된 상태
+
+## 6. 스레드 우선순위
+    static int MAX_PRIORITY : 최대 우선순위 (10)
+    static int MIN_PRIORITY : 최소 우선순위 (1)
+    static int NORMAL_PRIORITY : 기본 우선순위
+
+- 스레드의 우선순위는 1 ~ 10까지 가질 수 있다.
+- 숫자가 높을수록 우선순위가 높다.
+
+> ※ 스레드 우선순위는 응용프로그램에서 변경 가능하다.
+
+```java
+void setPriority(int priority)
+int getPriority()
+```
+
+- main() 스레드의 초기 우선순위는 5
+- 스레드는 부모 스레드와 동일한 우선순위를 가진다.
+
+## 7. main 스레드
+- main()을 실행
+- 응용프로그램을 실행할 때 JVM이 스레드 생성
+    - main 스레드
+- JVM이 main 스레드가 main() 메소드를 실행하게 한다.
+
+### 7.1) main 스레드 정보
+```java
+public class MainThreadEx {
+    public static void main(String[] args) {
+        long id = Thread.currentThread().getId();                       // 현재 Thread의 ID 얻기
+        String name = Thread.currentThread().getName();                 // 현재 Thread의 이름 얻기
+        int priority = Thread.currentThread().getPriority();            // 현재 Thread의 우선순위 값 얻ㄱ이
+        Thread.State state = Thread.currentThread().getState();         // 현재 Thread의 상태 값 얻기
+        
+        System.out.println("현재 스레드 ID : " + id);
+        System.out.println("현재 스레드 이름 : " + name);
+        System.out.println("현재 스레드 우선순위 : " + priority);
+        System.out.println("현재 스레드 상태 값 : " + state);
+    }
+}
+```
+
+### 실행결과
+    현재 스레드 ID : 1
+    현재 스레드 이름 : main
+    현재 스레드 우선순위 : 5
+    현재 스레드 상태 값 : RUNNABLE
+
+## 8. 스레드 종료
+### 8.1) 스스로 종료
+- run() 메소드 리턴
+```java
+class ThreadEx extends Thread {
+    int n = 0;
+    
+    @Override
+    public void run() {                 // run() 메소드 오버라이딩
+        while(true) {
+            System.out.print(n);        // 1초마다 n 값 출력
+            n++
+            
+            try {
+                sleep(1000);            // 1초 동안 대기
+            } catch(InterruptedException e) {
+                return;                 // 리턴하여 종료
+            }
+        }
+    }
+}
+```
+
+### 8.2) 강제 종료
+- 다른 스레드에서 강제 종료
+- interrupt() 메소드 사용
+```java
+public static void main(String[] args) {
+    ThreadEx thread = new ThreadEx();       // 스레드 객체 생성
+    thread.start();                         // 스레드 실행
+    
+    thread.interrupt();                     // 스레드 강제 종료
+}
+```
+
+## 9. flag를 이용한 종료
+- 다른 스레드에서 한 스레드의 flag를 true로 만들면 스레드 종료
+
+## 10. 스레드 동기화
+- Thread Stnchronization
+- 공유 데이터에 대한 멀티스레드의 동시 접근 문제의 해결책
+    - 한 스레드의 공유 데이터 작업이 끝날 때까지 다른 스레드는 대기
+- 다수의 스레드가 공유 데이터를 배타적으로 접근하기 위해 상호 협력하는 것
+
+> ※ 다수의 스레드가 공유 데이터에 동시에 접근할 경우 예상치 못한 결과가 발생할 수 있다.
+
+### 10.1) 스레드 동기화 방법
+#### 10.1.1) synchronized로 동기화 블록 지정
+#### synchronized 키워드
+- 한 스레드가 독점적으로 실행해야 하는 동기화 코드를 표시
+- 메소드 전체 또는 코드 블록에 사용
+
+#### synchronized 블록에 대한 컴파일러의 처리
+1. 먼저 실행한 스레드가 해당 객체를 독점적으로 사용하는 권한을 소유한다.
+2. 먼저 실행한 스레드가 사용 권한을 포기할 때까지 다른 스레드들은 대기한다.
+
+#### 10.1.2) wait() - notify() 메소드로 실행 순서 제어
+- 동기화 객체 : 두 개 이상의 스레드의 동기화에 사용되는 객체
+
+#### 동기화 메소드
+- Object 메소드이다.
+    - 모든 객체가 동기화 객체로 가능
+    - Thread 객체도 동기화 객체로 사용 가능
+- wait() : 다른 스레드가 notify()를 호출할 때까지 대기
+- notify() : 대기 중인 스레드를 RUNNABLE 상태로 만든다. (한 개의 스레드만 깨운다.)
+-notifyAll() : 대기 중인 모든 스레드를 RUNNABLE 상태로 만든다. (synchronized 블록 내에서만 사용)
+
+# Chapter 11 - 그래픽
+## 1. 스윙 컴포넌트 그리기
+### 1.1) 스윙 그리기의 기본
+- 모든 컴포넌트는 자신의 모양을 스스로 그린다.
+- 컨테이너는 자신을 그린 후, 자식들에게 그리기를 지시한다.
+
+### 1.2) public void paintComponent(Graphics g)
+- 스윙 컴포넌트가 자신의 모양을 그리는 메소드
+- 컴포넌트가 그려져야 하는 시점마다 호출
+    - 크기 변경, 위치 변경 등...
+- JComponent 메소드 : 모든 스윙 컴포넌트가 이 메소드를 가진다.
+
+## 2. Graphics 객체
+- java.awt.Graphics
+- 컴포넌트 그리기에 필요한 도구를 제공하는 객체
+
+## 3. 그래픽 기반 GUI 프로그래밍
+- 스윙 컴포넌트를 사용하지 않는다.
+-  선, 원, 이미지 등을 직접 그려서 GUI 화면을 구성
+- 자유롭고 빠르게 GUI 표현이 가능하다.
+
+### 3.1) Graphics의 기능
+- 색상 선택
+- 문자열 출력
+- 도형 그리기
+- 도형 칠하기
+- 이미지 출력
+- 클리핑
+
+### 3.2) 문자열 그리기
+- void drawString(String str, int x, int y)
+    - (x, y) 좌표에 str 문자열을 그린다.
+    - 현재 컬러와 폰트로 출력한다.
+
+## 4. Color & Font 클래스
+### 4.1) Color
+- 하나의 색을 표현하는 클래스
+- 3가지 성분 : Red, Green, Blue
+- 각 성분은 0 ~ 255 사이의 크기를 가진다.
+
+#### 4.1.1) 생성자
+```java
+Color(int r, int g, int b)
+new Color(128, 255, 0);
+// r(red), g(green), b(blue)
+// RGB 색상을 생성
+
+
+Color(int rgb)
+new Color(0x0000ff00); // 초록색
+// rgb 정수 값은 32비트 중 하위 24비트만 유효
+// 0x00rrggbb 형태로 표현
+```
+
+#### 4.1.2) 사용 방법
+```java
+Graphics g;
+// 아래 세 방법 중 하나를 상황에 따라 사용
+g.setColor(Color.RED); // 작성자는 해당 방법을 선호
+g.setColor(new Color(128, 255, 0));
+g.setColor(new Color(0x0000ff00);
+```
+
+### 4.2) Font
+- 폰트를 표현하는 클래스
+
+#### 4.2.1) 생성자
+```java
+Font(String fontFace, int style, int size)
+// fontFace : 고딕체, Arial 등을 의미
+// style : Font.BOLD, Font. ITALIC, Font,. PLAIN 중 하나
+// size : 픽셀 단위 크기
+```
+
+#### 4.2.2) 색상과 폰트 설정
+```java
+void setColor(Color color)
+// 설정할 색상을 color로 지정
+
+void setFont(Font font)
+// 설정할 폰트를 font로 지정
+```
+
+#### 4.2.3) 사용 방법
+```java
+Graphics g;
+Font font = new Font("Arial", Font.ITALIC, 20);
+g.setFont(font);
+g.setColot(Color.RED);
+g.drawString("Font&Color", 50, 50);
+```
+
+## 5. 도형 그리기
+- 선, 사각형, 타원 등
+
+### 5.1) Graphics의 메소드
+```java
+void drawLine(int x1, int y1, int x2, int y2)
+// (x1, y1) 좌표부터 (x2, y2) 좌표까지 선을 그린다.
+
+void drawRect(int x, int y, int width, int height)
+// (x, y) 좌표에 width x height 크기인 사각형을 그린다.
+
+void drawOval(int x, int y, int width, int height)
+// (x, y) 좌표에 width x height 크기인 사각형에 내접하는 타원을 그린다.
+
+void drawRoundRect(int x, int y, int width, int height, int acrWidth, int arcHeight)
+// arcWidth : 모서리 원의 수평 반지름
+// arcHeight : 모서리 원의 수직 반지름
+// (x, y) 좌표에 width x height 크기인 사각형을 그리면서
+// 사각형의 4개의 모서리는 arcWidth와 arcHeight를 이용하여 원호로 그린다.
+```
+
+## 6. 도형 칠하기
+- 도형을 그리고 도형 내부를 칠하는 기능
+- 도형의 외곽선과 내부를 따로 칠하는 기능은 없다.
+
+### 6.1) 도형을 칠하기 위한 메소드
+```java
+void fillRect(int x, int y, int width, int height)
+
+void fillOval(int x, int y, int width, int height)
+
+void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight)
+
+void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle)
+
+void follPolygon(int[] x, int[] y, int n)
+```
+
+## 7. 이미지 그리기
+### 7.1) JPanel에 Graphics 메소드를 사용
+#### 장점
+- 이미지의 원본 크기와 다르게 그리기 가능
+- 이미지의 일부분 등을 그리는 것이 가능
+#### 단점
+- 컴포넌트로 관리되지 않는다.
+    - 이미지에 이벤트가 발생하지 않는다.
+    - 구현자가 이미지의 위치와 크기를 설정하여야 한다.
+
+### 7.2) 메소드
+- 이미지가 그려지면, 통보를 받는 객체를 지정하는 매개변수
+- 주로 this를 사용하거나 null로 통보를 받지 않을 수 있다.
+
+#### 7.2.1) 이미지 원본 크기로 그리기
+```java
+void drawImage(Image img, int x, int y, Color backgroundColor, ImageObserver ob)
+
+void drawImage(Image img, int x, int y, ImageObserver ob)
+```
+
+#### 7.2.2) 이미지의 크기를 조절하여 그리기
+```java
+void drawImage(Image img, int x, int y, int width, int height, 
+	Color backgroundColor, ImageObserver, ob)
+
+void drawImage(Image img, int x, int y, int width, int height, ImageObserver ob)
+```
+
+#### 7.2.3) 이미지 일부분의 크기를 조절하여 그리기
+```java
+void drawImage(Image img, int dx1, int dy1, int dx2, int dy2, 
+	int sx1, int sy1, int sx2, int sy2, Color backgroundColor, ImageObserver)
+    
+void drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1,
+	int sx2, int sy2, ImageObserver ob)
+```
+
+### 7.3) 클리핑(Clipping)
+- 클리핑 영역 : 하나의 사각형 영역
+- 클리핑 영역에서만 그래픽이 이루어지도록 하는 기능
+- 그리기, 칠하기 이미지 그리기, 문자열 출력 등에서 작동한다.
+
+#### 7.3.1) 클리핑 메소드
+```java
+void setClip(int x, int y, int width, int height)
+// 컴포넌트의 (x, y) 위치에서 width x height 크기의 사각형을 클리핑 영역으로 지정
+
+void clipRect(int x, int y, int width, int height)
+// 기존 클리핑 영역과 새로 지정된 영역의 교집합 영역을 클리핑 영역으로 지정
+// 사용할수록 클리핑 영역이 줄어든다.
+```
+
+## 8. repaint() 메소드
+- 강제로 컴포넌트를 다시 그리도록 하는 메소드
+- 컴포넌트의 페인팅 과정을 진행
+- 자바 플랫폼에게 다시 그리도록 지시
+```java
+component.repaint();
+```
+
+### 8.1) repaint()를 사용하는 경우
+- 프로그램 내에서 모양 또는 위치를 변경한 경우
+- repaint() 호출 시 paintComponent()가 호출된다.
+
+#### 8.1.1) 부모 컴포넌트부터 다시 그리는 것이 좋은 이유
+- 해당 컴포넌트에 repaint( ) 메소드를 호출하면 새로운 위치에 다시 그려진다.
+- 그러나, 이전에 그려진 모양은 남아있다.
+- 이를 해결하기 위해서는 부모 컴포넌트의 repaint( ) 메소드를 호출하는 것이 좋다.
+```java
+component.getParent().repaint();
+```
+
+## 9. revalidate() 메소드
+- 컨테이너 배치관리자에게 자식 컴포넌트를 다시 배치하도록 지시하는 메소드
+- 컨테이너에 변경이 생기는 경우 사용
+    - 프로그램 내에서 컴포넌트 삽입 또는 삭제의 경우
+```java
+container.revalidate();     // 컴포넌트 재배치를 지시
+container.repaint();        // 컨터이너 다시 그리기
+```
 
 # 31/05/2024 (12week)
 # Chapter 10 - 스윙 컴포넌트 활용
@@ -90,17 +521,17 @@ JLabel jLabel = new JLabel("텍스트 내용", img, SwingConstants.CENTER);   //
 
 ### 4.1) 생성자
 ```java
-JButton() // 빈 버튼 생성
+JButton()                               // 빈 버튼 생성
 
-JButton(Icon image) // 이미지 버튼을 생성
+JButton(Icon image)                     // 이미지 버튼을 생성
 // 예시
-JButton("이미지 경로"); // 실제 경로를 입력
+JButton("이미지 경로");                   // 실제 경로를 입력
 
-JButton(String text) // 문자열 버튼을 생성
+JButton(String text)                    // 문자열 버튼을 생성
 // 예시
 JButton("문자열을 입력");
 
-JButton(String text, Icon image) // 문자열과 이미지 모두 포함하는 버튼을 생성
+JButton(String text, Icon image)        // 문자열과 이미지 모두 포함하는 버튼을 생성
 ```
 
 ## 5. 이미지 버튼 만들기
@@ -436,7 +867,7 @@ void stateChanged(ChangeEvent e)
 ```
 
 # 24/05/2024 (11week)
-# Chapter 9 - 자바의 이벤트 처리
+# Chapter 09 - 자바의 이벤트 처리
 ## 1. 이벤트 기반 프로그래밍(Event Driven Programming)
 ### 1.1) 이벤트의 발생에 의해 프로그램 흐름이 결정되는 방식
 - 이벤트가 발생하면 이벤트 처리하는 루틴(이벤트 리스너) 실행
@@ -739,7 +1170,7 @@ public void mouseClicked(MouseEvent e) {
 ```
 
 # 17/05/2024 (10week)
-# Chapter 8 - 자바 GUI 스윙 기초
+# Chapter 08 - 자바 GUI 스윙 기초
 ## 1. GUI(Graphical User Interface)
 ### 1.1) GUI의 목적
 - 그래픽을 이용하기 위함.

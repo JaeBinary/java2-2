@@ -37,6 +37,8 @@
 		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 			// 프레임 닫기 버튼 클릭 시 프로그램 종료
 		 Container c = getContentPane(); 							// 컨텐트 팬을 가져옴
 		 c.setLayout(new FlowLayout()); 							// 레이아웃 매니저를 FlowLayout으로 설정
+		 setSize(250, 150); 							// 프레임 크기 설정
+		 setVisible(true); 										// 프레임을 화면에 표시
  
 		 // 타이머 값을 출력할 레이블 생성
 		 JLabel timerLabel = new JLabel();
@@ -46,8 +48,7 @@
 		 // 타이머 스레드 객체 생성. 타이머 값을 출력할 레이블을 생성자에 전달
 		 TimerThread th = new TimerThread(timerLabel);
  
-		 setSize(250, 150); 	// 프레임 크기 설정
-		 setVisible(true); 				// 프레임을 화면에 표시
+		 
  
 		 th.start(); 						// 타이머 스레드의 실행을 시작하게 한다.
 	 }
