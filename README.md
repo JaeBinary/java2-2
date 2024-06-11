@@ -1,7 +1,7 @@
 # JAEBIN KIM (202038112)
 ### Motto : STICK IT OUT
 
-#### 자바 형태 (기본)
+#### 자바 메인 메서드 (프로그램이 시작될 때 가장 먼저 실행!)
 ```JAVA
 public class 클래스명 {
     public static void main(String[] args) {
