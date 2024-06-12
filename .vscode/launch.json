@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BorderLayoutEx",
+            "request": "launch",
+            "mainClass": "chapter08.BorderLayoutEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "GraphicsDrawLineMouseEx",
             "request": "launch",
             "mainClass": "chapter11.GraphicsDrawLineMouseEx",
