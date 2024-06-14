@@ -5,59 +5,59 @@ import java.util.*;
 
 public class CalcServerEx {
 
-    // ¼ö½ÄÀ» °è»êÇÏ´Â ¸Ş¼­µå
+    // ìˆ˜ì‹ì„ ê³„ì‚°í•˜ëŠ” ë©”ì„œë“œ
     public static String calc(String exp) {
-        StringTokenizer st = new StringTokenizer(exp, " "); 								// ¼ö½ÄÀ» °ø¹éÀ» ±âÁØÀ¸·Î ºĞ¸®ÇÏ´Â StringTokenizer »ı¼º
-        if (st.countTokens() != 3) return "error"; 												// ÇÇ¿¬»êÀÚ¿Í ¿¬»êÀÚ¸¦ Á¦´ë·Î ºĞ¸®ÇÏÁö ¸øÇÑ °æ¿ì ¿À·ù ¹İÈ¯
+        StringTokenizer st = new StringTokenizer(exp, " "); 								// ìˆ˜ì‹ì„ ê³µë°±ì„ ê¸°ì¤€ìœ¼ë¡œ ë¶„ë¦¬í•˜ëŠ” StringTokenizer ìƒì„±
+        if (st.countTokens() != 3) return "error"; 												// í”¼ì—°ì‚°ìì™€ ì—°ì‚°ìë¥¼ ì œëŒ€ë¡œ ë¶„ë¦¬í•˜ì§€ ëª»í•œ ê²½ìš° ì˜¤ë¥˜ ë°˜í™˜
 
         String res = "";
-        int op1 = Integer.parseInt(st.nextToken()); 											// Ã¹ ¹øÂ° ÇÇ¿¬»êÀÚ
-        String opcode = st.nextToken(); 														// ¿¬»êÀÚ
-        int op2 = Integer.parseInt(st.nextToken()); 											// µÎ ¹øÂ° ÇÇ¿¬»êÀÚ
+        int op1 = Integer.parseInt(st.nextToken()); 											// ì²« ë²ˆì§¸ í”¼ì—°ì‚°ì
+        String opcode = st.nextToken(); 														// ì—°ì‚°ì
+        int op2 = Integer.parseInt(st.nextToken()); 											// ë‘ ë²ˆì§¸ í”¼ì—°ì‚°ì
         switch (opcode) {
-            case "+": res = Integer.toString(op1 + op2); 										// µ¡¼À ¿¬»ê
+            case "+": res = Integer.toString(op1 + op2); 										// ë§ì…ˆ ì—°ì‚°
                 break;
-            case "-": res = Integer.toString(op1 - op2); 										// »¬¼À ¿¬»ê
+            case "-": res = Integer.toString(op1 - op2); 										// ëº„ì…ˆ ì—°ì‚°
                 break;
-            case "*": res = Integer.toString(op1 * op2); 										// °ö¼À ¿¬»ê
+            case "*": res = Integer.toString(op1 * op2); 										// ê³±ì…ˆ ì—°ì‚°
                 break;
-            default : res = "error"; 															// ¾Ë ¼ö ¾ø´Â ¿¬»êÀÚÀÎ °æ¿ì ¿À·ù ¹İÈ¯
+            default : res = "error"; 															// ì•Œ ìˆ˜ ì—†ëŠ” ì—°ì‚°ìì¸ ê²½ìš° ì˜¤ë¥˜ ë°˜í™˜
         }
-        return res; 																			// °è»ê °á°ú ¹İÈ¯
+        return res; 																			// ê³„ì‚° ê²°ê³¼ ë°˜í™˜
     }
 
-    // ¼­¹ö ¸ŞÀÎ ¸Ş¼­µå
+    // ì„œë²„ ë©”ì¸ ë©”ì„œë“œ
     public static void main(String[] args) {
-        BufferedReader in = null; 																// Å¬¶óÀÌ¾ğÆ®·ÎºÎÅÍÀÇ ÀÔ·ÂÀ» ¹Ş±â À§ÇÑ BufferedReader
-        BufferedWriter out = null; 																// Å¬¶óÀÌ¾ğÆ®·ÎÀÇ Ãâ·ÂÀ» À§ÇÑ BufferedWriter
-        ServerSocket listener = null; 															// Å¬¶óÀÌ¾ğÆ®ÀÇ ¿¬°áÀ» ¹Ş±â À§ÇÑ ServerSocket
-        Socket socket = null; 																	// Åë½ÅÀ» À§ÇÑ Socket
+        BufferedReader in = null; 																// í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„°ì˜ ì…ë ¥ì„ ë°›ê¸° ìœ„í•œ BufferedReader
+        BufferedWriter out = null; 																// í´ë¼ì´ì–¸íŠ¸ë¡œì˜ ì¶œë ¥ì„ ìœ„í•œ BufferedWriter
+        ServerSocket listener = null; 															// í´ë¼ì´ì–¸íŠ¸ì˜ ì—°ê²°ì„ ë°›ê¸° ìœ„í•œ ServerSocket
+        Socket socket = null; 																	// í†µì‹ ì„ ìœ„í•œ Socket
         try {
-            listener = new ServerSocket(9999); 											// Æ÷Æ® 9999¿¡¼­ Å¬¶óÀÌ¾ğÆ®ÀÇ ¿¬°á ¿äÃ»À» ¹ŞÀ» ServerSocket »ı¼º
-            System.out.println("¿¬°áÀ» ±â´Ù¸®°í ÀÖ½À´Ï´Ù.....");
-            socket = listener.accept(); 														// Å¬¶óÀÌ¾ğÆ®ÀÇ ¿¬°á ¿äÃ»À» ±â´Ù¸®°í, ¿¬°áÀ» ¼ö¶ôÇÏ¿© Socket »ı¼º
-            System.out.println("¿¬°áµÇ¾ú½À´Ï´Ù.");
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream())); 			// ¼ÒÄÏ ÀÔ·Â ½ºÆ®¸²
-            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); 		// ¼ÒÄÏ Ãâ·Â ½ºÆ®¸²
+            listener = new ServerSocket(9999); 											// í¬íŠ¸ 9999ì—ì„œ í´ë¼ì´ì–¸íŠ¸ì˜ ì—°ê²° ìš”ì²­ì„ ë°›ì„ ServerSocket ìƒì„±
+            System.out.println("ì—°ê²°ì„ ê¸°ë‹¤ë¦¬ê³  ìˆìŠµë‹ˆë‹¤.....");
+            socket = listener.accept(); 														// í´ë¼ì´ì–¸íŠ¸ì˜ ì—°ê²° ìš”ì²­ì„ ê¸°ë‹¤ë¦¬ê³ , ì—°ê²°ì„ ìˆ˜ë½í•˜ì—¬ Socket ìƒì„±
+            System.out.println("ì—°ê²°ë˜ì—ˆìŠµë‹ˆë‹¤.");
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream())); 			// ì†Œì¼“ ì…ë ¥ ìŠ¤íŠ¸ë¦¼
+            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); 		// ì†Œì¼“ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼
             while (true) {
-                String inputMessage = in.readLine(); 											// Å¬¶óÀÌ¾ğÆ®·ÎºÎÅÍ ¼ö½ÄÀ» ÀÔ·Â¹ŞÀ½
+                String inputMessage = in.readLine(); 											// í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„° ìˆ˜ì‹ì„ ì…ë ¥ë°›ìŒ
                 if (inputMessage.equalsIgnoreCase("bye")) {
-                    System.out.println("Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¿¬°áÀ» Á¾·áÇÏ¿´À½"); 						 // "bye" ¸Ş½ÃÁö¸¦ ¹ŞÀ¸¸é ¿¬°á Á¾·á ¸Ş½ÃÁö Ãâ·Â
-                    break; 																		// ¿¬°á Á¾·á
+                    System.out.println("í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì—°ê²°ì„ ì¢…ë£Œí•˜ì˜€ìŒ"); 						 // "bye" ë©”ì‹œì§€ë¥¼ ë°›ìœ¼ë©´ ì—°ê²° ì¢…ë£Œ ë©”ì‹œì§€ ì¶œë ¥
+                    break; 																		// ì—°ê²° ì¢…ë£Œ
                 }
-                System.out.println(inputMessage); 												// ¹ŞÀº ¸Ş½ÃÁö¸¦ ÄÜ¼Ö¿¡ Ãâ·Â
-                String res = calc(inputMessage); 												// ÀÔ·Â¹ŞÀº ¼ö½ÄÀ» °è»êÇÏ¿© °á°ú¸¦ ¹ŞÀ½
-                out.write(res + "\n"); 															// °è»ê °á°ú¸¦ Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü¼Û
+                System.out.println(inputMessage); 												// ë°›ì€ ë©”ì‹œì§€ë¥¼ ì½˜ì†”ì— ì¶œë ¥
+                String res = calc(inputMessage); 												// ì…ë ¥ë°›ì€ ìˆ˜ì‹ì„ ê³„ì‚°í•˜ì—¬ ê²°ê³¼ë¥¼ ë°›ìŒ
+                out.write(res + "\n"); 															// ê³„ì‚° ê²°ê³¼ë¥¼ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ì†¡
                 out.flush();
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage()); 												// ÀÔÃâ·Â ¿¹¿Ü ¹ß»ı ½Ã ¸Ş½ÃÁö Ãâ·Â
+            System.out.println(e.getMessage()); 												// ì…ì¶œë ¥ ì˜ˆì™¸ ë°œìƒ ì‹œ ë©”ì‹œì§€ ì¶œë ¥
         } finally {
             try {
-                if (socket != null) socket.close(); 											// ¼ÒÄÏ ´İ±â
-                if (listener != null) listener.close(); 										// ¼­¹ö ¼ÒÄÏ ´İ±â
+                if (socket != null) socket.close(); 											// ì†Œì¼“ ë‹«ê¸°
+                if (listener != null) listener.close(); 										// ì„œë²„ ì†Œì¼“ ë‹«ê¸°
             } catch (IOException e) {
-                System.out.println("Å¬¶óÀÌ¾ğÆ®¿ÍÀÇ ¿¬°á ÇØÁ¦ Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù."); 			   // ¿¹¿Ü ¹ß»ı ½Ã ¸Ş½ÃÁö Ãâ·Â
+                System.out.println("í´ë¼ì´ì–¸íŠ¸ì™€ì˜ ì—°ê²° í•´ì œ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤."); 			   // ì˜ˆì™¸ ë°œìƒ ì‹œ ë©”ì‹œì§€ ì¶œë ¥
             }
         }
     }

@@ -5,35 +5,35 @@ import java.util.*;
 
 public class ClientEx {
     public static void main(String[] args) {
-        BufferedReader in = null;                                                               // ¼­¹ö·ÎºÎÅÍÀÇ ÀÔ·ÂÀ» ¹Ş±â À§ÇÑ BufferedReader
-        BufferedWriter out = null;                                                              // ¼­¹ö·ÎÀÇ Ãâ·ÂÀ» À§ÇÑ BufferedWriter
-        Socket socket = null;                                                                   // Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ
-        Scanner scanner = new Scanner(System.in);                                               // Å°º¸µå ÀÔ·ÂÀ» ¹Ş±â À§ÇÑ Scanner °´Ã¼ »ı¼º
+        BufferedReader in = null;                                                               // ì„œë²„ë¡œë¶€í„°ì˜ ì…ë ¥ì„ ë°›ê¸° ìœ„í•œ BufferedReader
+        BufferedWriter out = null;                                                              // ì„œë²„ë¡œì˜ ì¶œë ¥ì„ ìœ„í•œ BufferedWriter
+        Socket socket = null;                                                                   // í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“
+        Scanner scanner = new Scanner(System.in);                                               // í‚¤ë³´ë“œ ì…ë ¥ì„ ë°›ê¸° ìœ„í•œ Scanner ê°ì²´ ìƒì„±
         try {
-            socket = new Socket("localhost", 9999);                                   // ¼­¹ö¿¡ Á¢¼ÓÀ» ½ÃµµÇÏ´Â ¼ÒÄÏ »ı¼º
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));            // ¼ÒÄÏ ÀÔ·Â ½ºÆ®¸²
-            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));         // ¼ÒÄÏ Ãâ·Â ½ºÆ®¸²
+            socket = new Socket("localhost", 9999);                                   // ì„œë²„ì— ì ‘ì†ì„ ì‹œë„í•˜ëŠ” ì†Œì¼“ ìƒì„±
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));            // ì†Œì¼“ ì…ë ¥ ìŠ¤íŠ¸ë¦¼
+            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));         // ì†Œì¼“ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼
             while (true) {
-                System.out.print("º¸³»±â>>");                                                   // »ç¿ëÀÚ¿¡°Ô ÀÔ·Â ÇÁ·ÒÇÁÆ® Á¦°ø
-                String outputMessage = scanner.nextLine();                                       // »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ¸Ş½ÃÁö¸¦ ÀĞÀ½
-                if (outputMessage.equalsIgnoreCase("bye")) {                       // »ç¿ëÀÚ°¡ "bye"¸¦ ÀÔ·ÂÇÑ °æ¿ì
-                    out.write(outputMessage + "\n");                                             // ¼­¹ö¿¡ "bye"¸¦ Àü¼Û
+                System.out.print("ë³´ë‚´ê¸°>>");                                                   // ì‚¬ìš©ìì—ê²Œ ì…ë ¥ í”„ë¡¬í”„íŠ¸ ì œê³µ
+                String outputMessage = scanner.nextLine();                                       // ì‚¬ìš©ìê°€ ì…ë ¥í•œ ë©”ì‹œì§€ë¥¼ ì½ìŒ
+                if (outputMessage.equalsIgnoreCase("bye")) {                       // ì‚¬ìš©ìê°€ "bye"ë¥¼ ì…ë ¥í•œ ê²½ìš°
+                    out.write(outputMessage + "\n");                                             // ì„œë²„ì— "bye"ë¥¼ ì „ì†¡
                     out.flush();
-                    break;                                                                       // ¿¬°á Á¾·á
+                    break;                                                                       // ì—°ê²° ì¢…ë£Œ
                 }
-                out.write(outputMessage + "\n");                                                 // »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ¸Ş½ÃÁö¸¦ ¼­¹ö¿¡ Àü¼Û
+                out.write(outputMessage + "\n");                                                 // ì‚¬ìš©ìê°€ ì…ë ¥í•œ ë©”ì‹œì§€ë¥¼ ì„œë²„ì— ì „ì†¡
                 out.flush();
-                String inputMessage = in.readLine();                                             // ¼­¹ö·ÎºÎÅÍÀÇ ÀÀ´äÀ» ÀĞÀ½
-                System.out.println("¼­¹ö: " + inputMessage);                                      // ¼­¹ö·ÎºÎÅÍ ¹ŞÀº ¸Ş½ÃÁö¸¦ È­¸é¿¡ Ãâ·Â
+                String inputMessage = in.readLine();                                             // ì„œë²„ë¡œë¶€í„°ì˜ ì‘ë‹µì„ ì½ìŒ
+                System.out.println("ì„œë²„: " + inputMessage);                                      // ì„œë²„ë¡œë¶€í„° ë°›ì€ ë©”ì‹œì§€ë¥¼ í™”ë©´ì— ì¶œë ¥
             }
-        } catch (IOException e) {                                                                // ÀÔÃâ·Â ¿¹¿Ü Ã³¸®
-            System.out.println(e.getMessage());                                                  // ¿¹¿Ü ¸Ş½ÃÁö Ãâ·Â
+        } catch (IOException e) {                                                                // ì…ì¶œë ¥ ì˜ˆì™¸ ì²˜ë¦¬
+            System.out.println(e.getMessage());                                                  // ì˜ˆì™¸ ë©”ì‹œì§€ ì¶œë ¥
         } finally {
             try {
-                scanner.close();                                                                 // Scanner °´Ã¼ ´İ±â
-                if (socket != null) socket.close();                                              // ¼ÒÄÏ ´İ±â
+                scanner.close();                                                                 // Scanner ê°ì²´ ë‹«ê¸°
+                if (socket != null) socket.close();                                              // ì†Œì¼“ ë‹«ê¸°
             } catch (IOException e) {
-                System.out.println("¼­¹ö¿ÍÀÇ ¿¬°á ÇØÁ¦ Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.");                    // ¿¹¿Ü ¹ß»ı ½Ã ¸Ş½ÃÁö Ãâ·Â
+                System.out.println("ì„œë²„ì™€ì˜ ì—°ê²° í•´ì œ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");                    // ì˜ˆì™¸ ë°œìƒ ì‹œ ë©”ì‹œì§€ ì¶œë ¥
             }
         }
     }
