@@ -435,14 +435,12 @@ class SendThread extends Thread {
 ## 3. FileReader을 이용한 파일 읽기
 - 파일 전체를 읽어 화면에 출력하는 코드
 ```java
-		FileReader fin = new FileReader("txt 주소");    // 파일 열고 파일과 입력 바이트 스트림 객체 fin 연결
-		int c;
-		while((c = fin.read() != -1 ))                  // 파일의 끝까지 바이트씩 c에 읽어 들인다. 파일의 끝을 만나면 read()는 -1리턴
-		{
-			
-			System.out.print((char)c);                  // 바이트 C를 문자로 변환하여 화면에 출력
-		}
-		fin.close();                                    // 스트림 닫기, 파일도 닫힘 => 스트림과 파일의 연결을 끊으로서 더이상 스트림으로부터 읽을 수 없다.
+FileReader fin = new FileReader("txt 주소");     // 파일 열고 파일과 입력 바이트 스트림 객체 fin 연결
+int c;
+while((c = fin.read() != -1 )) {                // 파일의 끝까지 바이트씩 c에 읽어 들인다. 파일의 끝을 만나면 read()는 -1리턴			
+	System.out.print((char)c);                  // 바이트 C를 문자로 변환하여 화면에 출력
+}
+fin.close();                                    // 스트림 닫기, 파일도 닫힘 => 스트림과 파일의 연결을 끊으로서 더이상 스트림으로부터 읽을 수 없다.
 ```
 
 ## 4. 문자 집합과 InputStreamReader를 이용한 텍스트 파일 읽기
