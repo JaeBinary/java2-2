@@ -11,6 +11,540 @@ public class 클래스명 {
 ```
 
 # 14/06/2024 (14week)
+# Chapter 14 - 자바 소켓 프로그래밍
+## 1. 소켓(Socket)과 소켓통신이란?
+### 1.1) 소켓
+- TCP/IP 기반 네트워크 통신에서 데이터 송수신의 마지막 접접을 말한다.
+- 클라이언트 소켓과 서버 소켓으로 구분되며, 소켓간 통신을 위해서는 네트워크상에서 클라이언트와 서버에 해당되는 컴퓨터를 식별하기 위한 IP주소와 해당 컴퓨터내에서 현재 통신에 사용되는 응용프로그램을 식별하기 위한 포트번호가 사용된다.
+
+### 1.2) 소켓통신
+- 소켓을 통해 서버-클라이언트간 데이터를 주고받는 양방향 연결 지향성 통신을 말한다.
+- 보통 지속적으로 연결을 유지하면서 실시간으로 데이터를 주고받아야 하는 경우에 사용된다.
+
+## 2. 서버와 클라이언트
+- 소켓통신에서는 서버와 클라이언트가 존재한다.
+
+### 2.1) 서버(Server)
+- 데이터를 제공하는 쪽을 말한다.
+
+### 2.2) 클라이언트(Client)
+- 데이터를 요청하여 제공받는 쪽을 말한다.
+
+## 3. 서버 소켓 구현하기
+### 3.1) 서버소켓 생성
+```java
+ServerSocket serverSocket = new ServerSocket(8000);  // 포트번호
+```
+
+### 3.2) 클라이언트 접속 대기
+```java
+Socket socket = serverSocket.accept( );
+```
+
+### 3.3) 데이터 송수신을 위한 input/output 스트림 생성
+```java
+InputStream in = socket.getInputStream( );
+OutputStream out = socket.getOutputStream( );
+```
+
+### 3.4) input 스트림을 통한 데이터 수신 (클라이언트 → 서버)
+```java
+byte[ ] inputData = new byte[100];
+int length = in.read(inputData);
+String inputMessage = new String(inputData, 0, length);
+```
+
+### 3.5) output 스트림을 통한 데이터 송신 (서버 → 클라이언트)
+```java
+String outputMessage = "보낼메시지";
+out.write(outputMessage.getBytes( ));
+out.flush( );
+```
+
+### 3.6) 통신 종료
+```java
+socket.close( );
+serverSocket.close( );
+```
+
+## 4. 클라이언트 소켓 구현하기
+### 4.1) 클라이언트 소켓 생성을 통한 서버접속
+```java
+Socket socket = new Socket("127.0.0.1", 8000);  // IP주소, 포트번호
+```
+
+### 4.2) 데이터 송수신을 위한 input/output 스트림 생성 
+```java
+InputStream in = socket.getInputStream( );
+OutputStream out = socket.getOutputStream( );
+```
+
+### 4.3) output 스트림을 통한 데이터 송신 (클라이언트 → 서버)
+```java
+String outputMessage = "보낼메시지";
+out.write(outputMessage.getBytes( ));
+out.flush( );
+```
+
+### 4.4) input 스트림을 통한 데이터 수신 (서버 → 클라이언트)
+```java
+byte[ ] inputData = new byte[100];
+int length = in.read(inputData);
+String inputMessage = new String(inputData, 0, length);
+```
+
+### 4.5) 통신종료
+```java
+socket.close();
+```
+
+## 5. BufferedReader/BufferedWriter와 PrintWriter, PrintStream
+- 데이터 전송의 기본 단위는 바이트(byte)로 문자의 경우 데이터 전송 시 문자를 바이트로, 수신 시 바이트를 문자로 변환이 필요하다.
+- 자바에는 이 변환을 편리하게 해주는 클래스로 InputStreamReader와 OutputStreamWriter가 있으며 charset을 지정하여 사용할 수 있다.
+- 또한, 데이터 입출력의 효율을 위해 바로 전달하지 않고 중간에 버퍼를 이용하기 위해서 BufferedReader와 BufferedWriter 클래스를 함께 사용할 수 있다.
+
+```java
+BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream( )));
+BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream( )));
+```
+
+> 데이터 출력의 경우에는 출력 포맷을 편리하게 해주는 기능이 있는 PrintWriter 또는 PrintStream 클래스를 사용할 수 있다.
+
+```java
+PrintWriter out = new PrintWriter(socket.getOutputStream( ));
+PrintStream out = new PrintStream(socket.getOutputStream( ));
+```
+
+## 6. 소켓통신 사용예제1 (1:1 채팅 프로그램)
+### 6.1) 서버
+```java
+public class MyServer {
+	public static void main(String[] args) {
+		BufferedReader in = null;
+		PrintWriter out = null;
+		
+		ServerSocket serverSocket = null;
+		Socket socket = null;
+		Scanner scanner = new Scanner(System.in);
+		
+		try {
+			serverSocket = new ServerSocket(8000);
+			
+			System.out.println("[Server실행] Client연결대기중...");
+			socket = serverSocket.accept();			// 연결대기
+
+			System.out.println("Client 연결됨.");
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			out = new PrintWriter(socket.getOutputStream());
+						
+			while(true) {
+				String inputMessage = in.readLine();	// 수신데이터 한줄씩 읽기	
+				if ("quit".equalsIgnoreCase(inputMessage)) break;
+				
+				System.out.println("From Client: " + inputMessage);
+				System.out.print("전송하기>>> ");
+				
+				String outputMessage = scanner.nextLine();
+				out.println(outputMessage);
+				out.flush();
+				if ("quit".equalsIgnoreCase(outputMessage)) break;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				scanner.close();		// Scanner 닫기
+				socket.close();			// Socket 닫기
+				serverSocket.close();		// ServerSocket 닫기
+				System.out.println("연결종료");
+			} catch (IOException e) {
+				System.out.println("소켓통신에러");
+			}
+		}
+	}
+}
+```
+
+### 6.2) 클라이언트
+```java
+public class MyClient {
+	public static void main(String[] args) {
+		BufferedReader in = null;
+		PrintWriter out = null;
+		
+		Socket socket = null;
+		Scanner scanner = new Scanner(System.in);
+		
+		try {
+			socket = new Socket("127.0.0.1", 8000);
+			
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			out = new PrintWriter(socket.getOutputStream());
+			
+			while(true) {
+				System.out.print("전송하기>>> ");
+				String outputMessage = scanner.nextLine();
+				out.println(outputMessage);
+				out.flush();
+				if ("quit".equalsIgnoreCase(outputMessage)) break;
+								
+				String inputMessage = in.readLine();
+				System.out.println("From Server: " + inputMessage);
+				if ("quit".equalsIgnoreCase(inputMessage)) break;
+			}
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				scanner.close();
+				if (socket != null) socket.close();
+				System.out.println("서버연결종료");
+			} catch (IOException e) {
+				System.out.println("소켓통신에러");
+			}
+		}
+	}
+}
+```
+
+## 7. 소켓통신 사용예제2 (멀티 채팅 프로그램)
+### 7.1) 서버 구현
+- 멀티 채팅 프로그램의 서버에서는 서버소켓이 루프를 돌면서 클라이언트가 연결될 때마다 새로운 스레드(Receive Thread)를 생성한다.
+- 이렇게 생성된 스레드는 클라이언트에서 메시지가 들어올 때마다 전체 클라이언트에 해당 메시지를 전송한다.
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FoKODF%2FbtrJpftlM4Y%2FqT7LOEw3TQAWNi7mmzblRk%2Fimg.png)
+```java
+public class MultiServer {
+	
+	public static void main(String[] args) {
+		MultiServer multiServer = new MultiServer();
+		multiServer.start();
+	}
+	
+	public void start() {
+		ServerSocket serverSocket = null;
+		Socket socket = null;
+		try {
+			serverSocket = new ServerSocket(8000);
+			while (true) {
+				System.out.println("[클라이언트 연결대기중]");
+				socket = serverSocket.accept();
+				
+				// client가 접속할때마다 새로운 스레드 생성
+				ReceiveThread receiveThread = new ReceiveThread(socket);	
+				receiveThread.start();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (serverSocket!=null) {
+				try {
+					serverSocket.close();
+					System.out.println("[서버종료]");
+				} catch (IOException e) {
+					e.printStackTrace();
+					System.out.println("[서버소켓통신에러]");
+				}
+			}
+		}
+	}
+}
+
+class ReceiveThread extends Thread {
+	
+	static List<PrintWriter> list = 
+			Collections.synchronizedList(new ArrayList<PrintWriter>());
+	
+	Socket socket = null;
+	BufferedReader in = null;
+	PrintWriter out = null;
+			
+	public ReceiveThread (Socket socket) {
+		this.socket = socket;
+		try {
+			out = new PrintWriter(socket.getOutputStream());
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			list.add(out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+		
+	@Override
+	public void run() {
+
+		String name = "";
+		try {
+			// 최초1회는 client이름을 수신
+			name = in.readLine();
+			System.out.println("[" + name + " 새연결생성]");	
+			sendAll("[" + name + "]님이 들어오셨습니다.");
+			
+			while (in != null) {
+				String inputMsg = in.readLine();
+				if("quit".equals(inputMsg)) break;
+				sendAll(name + ">>" + inputMsg);
+			}
+		} catch (IOException e) {
+			System.out.println("[" + name + " 접속끊김]");
+		} finally {
+			sendAll("[" + name + "]님이 나가셨습니다");
+			list.remove(out);
+			try {
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("[" + name + " 연결종료]");
+	}
+	
+	private void sendAll (String s) {
+		for (PrintWriter out: list) {
+			out.println(s);
+			out.flush();
+		}
+	}
+}
+```
+
+### 7.2) 클라이언트 구현
+- 서버로부터 메시지를 전송받아 화면에 출력한다.
+- 메시지를 입력받아 서버에 전송하기 위한 스레드 하나를 생성하고, 첫전송은 클라이언트들의 구분을 위해서 클라이언트 이름을 생성해 전송하도록 한다.
+```java
+public class MultiClient {
+	
+	public static void main(String[] args) {
+		MultiClient multiClient = new MultiClient();
+		multiClient.start();
+	}
+	
+	public void start() {
+		Socket socket = null;
+		BufferedReader in = null;
+		try {
+			socket = new Socket("localhost", 8000);
+			System.out.println("[서버와 연결되었습니다]");
+
+			String name = "user" + (int)(Math.random()*10);
+			Thread sendThread = new SendThread(socket, name);
+			sendThread.start();
+
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			while (in != null) {
+				String inputMsg = in.readLine();
+				if(("[" + name + "]님이 나가셨습니다").equals(inputMsg)) break;
+				System.out.println("From:" + inputMsg);
+			}
+		} catch (IOException e) {
+			System.out.println("[서버 접속끊김]");
+		} finally {
+			try {
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("[서버 연결종료]");
+	}
+}
+
+class SendThread extends Thread {
+	Socket socket = null;
+	String name;
+
+	Scanner scanner = new Scanner(System.in);
+	
+	public SendThread(Socket socket, String name) {
+		this.socket = socket;
+		this.name = name;
+	}
+
+	@Override
+	public void run() {
+ 		try {
+			// 최초1회는 client의 name을 서버에 전송
+			PrintStream out = new PrintStream(socket.getOutputStream());
+			out.println(name);
+			out.flush();
+			
+			while (true) {
+				String outputMsg = scanner.nextLine();
+				out.println(outputMsg);
+				out.flush();
+				if("quit".equals(outputMsg)) break;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+}
+```
+
+# Chapter 13 - 입출력 스트림과 파일 입출력
+## 1. 스트림
+![스트림](https://velog.velcdn.com/images/seochan99/post/5e7fecb8-2549-4b06-9ccb-18f9d4096f0e/image.png)
+
+### 1.1) 스트림 입출력
+- 버퍼를 가지고 순차적으로 이루어지는 입출력
+
+### 1.2) 자바의 입출력 스트림
+- 응용 프로그램과 입출력 장치를 연결하는 소프트웨어 모듈
+    - 입력 스트림 : 입력 장치로부터 자바 프로그램으로 데이터 전달
+    - 출력 스트림 : 출력 장치로 데이터 출력
+
+### 1.3) 자바의 입출력 스트림 특징
+- 스트림의 양끝에 입출력 장치와 자바 응용프로그램 연결
+- 스트림은 단방향
+    - 입력과 출력을 동시에 하는 스트림 없다.
+- 입출력 스트림기본 단위
+    - 바이트 스트림 : 바이트
+    - 문자 스트림 : 문자(자바 문자 1개 : 2byte)
+- 선입선출 구조
+
+### 1.4) 자바의 입출력 스트림 종류
+#### 1.4.1) 바이트 스트림
+- 입출력되는 데이터를 단순 바이트로 처리
+    - ex) 바이너리 파일을 읽는 입력 스트림
+
+#### 1.4.2) 문자 스트림
+- 문자만 입출력하는 스트림
+- 문자가 아닌 바이너리 데이터는 스트림에서 처리하지 못한다.
+    - ex) 텍스트 파일을 읽는 입력 스트림
+
+### 1.5) JDK의 바이트 스트림 클래스 계층 구조
+![](https://velog.velcdn.com/images/seochan99/post/037c8ae7-3e76-4ca5-9f2e-abe500f1422e/image.png)
+
+![](https://velog.velcdn.com/images/seochan99/post/22743882-260b-4c66-98d9-1eed1ba47fc5/image.png)
+
+> ※ 스트림은 연결될 수 있다!
+
+![](https://velog.velcdn.com/images/seochan99/post/13fef17b-937e-424e-acbe-1f8b63449645/image.png)
+
+#### 1.5.1) 표준 입력 스트림 System.in에 InputStreamReader stream을 연결한 사례
+![](https://velog.velcdn.com/images/seochan99/post/6959c0ac-2f17-4070-898c-7c1c67cddd9d/image.png)
+
+## 2. 문자 스트림
+- 유니 코드(2byte) 문자를 입출력 하는 스트림
+    - 문자로 표현되지 않는 데이터는 다루지 못한다.
+    - 이미지, 동영상과 같은 바이너리 데이터 입출력 불과
+- 문자 스트림을 다루는 클래스
+    - Reader/Writer
+    - InputStreamReader/OutputStreamWriter
+    - FileReader/FileWriter
+
+## 3. FileReader을 이용한 파일 읽기
+- 파일 전체를 읽어 화면에 출력하는 코드
+```java
+		FileReader fin = new FileReader("txt 주소");    // 파일 열고 파일과 입력 바이트 스트림 객체 fin 연결
+		int c;
+		while((c = fin.read() != -1 ))                  // 파일의 끝까지 바이트씩 c에 읽어 들인다. 파일의 끝을 만나면 read()는 -1리턴
+		{
+			
+			System.out.print((char)c);                  // 바이트 C를 문자로 변환하여 화면에 출력
+		}
+		fin.close();                                    // 스트림 닫기, 파일도 닫힘 => 스트림과 파일의 연결을 끊으로서 더이상 스트림으로부터 읽을 수 없다.
+```
+
+## 4. 문자 집합과 InputStreamReader를 이용한 텍스트 파일 읽기
+```java
+FileInputStream fin = new FileInputStream("c:\\Temp\\hangul.txt");
+InputStreamReader in = new InputStreamReader(fin, "MS949");         // MS949 : 한글 완성형 확장형 문자 집합 
+
+ while ((c = in.read()) != -1) { 
+ System.out.print((char)c);
+ }
+```
+![](https://velog.velcdn.com/images/seochan99/post/4e4b9b5c-0564-4a39-9a3b-45784330f9d3/image.png)
+
+## 5. FileWriter 사용 예
+```java
+FileWriter fout = new FileWriter("c:\\Temp\\test.txt");             // txt로의 문자 출력 스트림 생성
+
+// 파일 쓰기
+// 문자 단위 쓰기
+fout.write(‘A’);                                                    // 문자 ‘A’ 쓰기
+fout.close();
+
+// 블록 단위 쓰기
+char [] buf new char[1024];
+
+
+// buf[] 배열의 처음부터 배열 크기(1024개 문자)만큼 쓰기
+fout.write(buf, 0, buf.length);
+```
+
+## 6. 바이트 스트림 클래스
+### 6.1) 바이트 스트림
+- 바이트 단위의 바이너리 값을 읽고 쓰는 스트림
+
+### 6.2) 바이트 스트림 클래스
+#### 6.2.1) InputStream/OutputStream
+- 추상 클래스
+- 바이트 스트림을 다루는 모든 클래스의 슈퍼 클래스
+
+#### 6.2.2) FileInputStream/FileOutputStream
+- 파일로부터 바이트 단위로 읽거나 저장하는 클래스
+- 바이너리 파일의 입출력 용도
+
+#### 6.2.3) DataInputStream/DataOutputStream
+- 자바의 기본 데이터 타입의 값(변수)을 바이너리 값 그대로 입출력
+- 문자열도 바이너리 형태로 입출력
+
+## 7. FileOutputStream을 이용한 파일 쓰기
+![](https://velog.velcdn.com/images/seochan99/post/f7c40aef-dd5f-4d03-9e10-e873c51f40a6/image.png)
+
+## 8. 버퍼 입출력 스트림과 버퍼 입출력의 특징
+### 8.1) 버퍼 스트림
+- 버퍼를 가진 스트림
+- 입출력 데이터를 일시적으로 저장하는 버퍼를 이용하여 입출력 효율 개선
+
+### 8.2) 버퍼 입출력의 목적
+- 입출력 시 운영체제의 API 호출 횟수를 줄여 입출력 성능 개선
+    - 출력 시 여러 번 반복되는 데이터를 버퍼에 모아두고 한 번에 장치로 출력
+![](https://velog.velcdn.com/images/seochan99/post/463ac0cf-859f-4c23-971c-03ef54359005/image.png)
+
+### 8.3) 버퍼 스트림의 종류
+#### 8.3.1) 바이트 버퍼 스트림
+- 바이트 단위의 바이너리 데이터를 처리하는 버퍼 스트림
+- BufferedInputStream와 BufferedOutputStream
+
+#### 8.3.2) 문자 버퍼 스트림
+- 유니코드의 문자 데이터만 처리하는 버퍼 스트림
+- BufferedReader와 BufferedWriter
+
+### 8.4) 20byte 버퍼를 가진 BufferedOutputStream
+![](https://velog.velcdn.com/images/seochan99/post/df80081f-0434-4ee1-9209-df0f9f7f5f51/image.png)
+
+
+## 9. File 클래스
+- 파일의 경로명을 다루는 클래스
+- 파일 관리 기능
+
+### 사용 예시
+```java
+// 파일 객체 생성
+	File f = new File("c:\\windows\\system.ini");
+
+// 파일의 경로명 
+	String filename = f.getName();                                      // "system.ini"
+	String path = f.getPath();                                          // "c:\\windows\\system.ini" 
+	String parent = f.getParent();                                      // "c:\\windows"
+
+// 파일인지 디렉터리인지 구분 
+	if(f.isFile())                                                      // 파일인 경우 
+		System.out.println(f.getPath() + "는 파일입니다.");
+	else if(f.isDirectory())                                            // 디렉터리인 경우 
+		System.out.println(f.getPath() + "는 디렉터리입니다.");
+	
+// 서브 디렉터리 리스트 얻기 
+	File f = new File("c:\\Temp");
+	File[] subfiles = f.listFiles();                                    // c:\Temp 파일 및 서브디렉터리 리스트 얻기
+	for(int i=0; i<filenames.length; i++) { 
+		System.out.print(subfiles[i].getName());                        // 파일명 출력
+		System.out.println("\t파일 크기: " + subfiles[i].length());      // 크기 출력 
+		}
+	}
+```
 
 # 07/06/2024 (13week)
 # Chapter 12 - 자바 스레드 기초
