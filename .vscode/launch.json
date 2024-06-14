@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "FileOutputStreamEx",
+            "request": "launch",
+            "mainClass": "chapter13.FileOutputStreamEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "FileWriterEx",
+            "request": "launch",
+            "mainClass": "chapter13.FileWriterEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
+            "name": "FileReaderEx",
+            "request": "launch",
+            "mainClass": "chapter13.FileReaderEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "BorderLayoutEx",
             "request": "launch",
             "mainClass": "chapter08.BorderLayoutEx",
