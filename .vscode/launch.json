@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ServerEx",
+            "request": "launch",
+            "mainClass": "chapter14.ServerEx",
+            "projectName": "java2-2_c040434b"
+        },
+        {
+            "type": "java",
             "name": "FileOutputStreamEx",
             "request": "launch",
             "mainClass": "chapter13.FileOutputStreamEx",
